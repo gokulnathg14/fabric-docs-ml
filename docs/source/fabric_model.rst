@@ -1,176 +1,176 @@
-Hyperledger Fabric Model
-========================
+ഹൈപ്പർലെഡ്ജർ ഫാബ്രിക് മോഡൽ
+=======================
 
-This section outlines the key design features woven into Hyperledger Fabric that
-fulfill its promise of a comprehensive, yet customizable, enterprise blockchain solution:
+ഹൈപ്പർലെഡ്ജർ ഫാബ്രിക്കിൽ നെയ്ത പ്രധാന ഡിസൈൻ സവിശേഷതകളെ ഈ വിഭാഗം വിശദീകരിക്കുന്നു
+സമഗ്രവും എന്നാൽ ഇഷ്ടാനുസൃതമാക്കാവുന്നതുമായ എന്റർപ്രൈസ് ബ്ലോക്ക്ചെയിൻ പരിഹാരത്തിനുള്ള വാഗ്ദാനം നിറവേറ്റുക:
 
-* :ref:`Assets` --- Asset definitions enable the exchange of almost anything with
-  monetary value over the network, from whole foods to antique cars to currency
-  futures.
-* :ref:`Chaincode` --- Chaincode execution is partitioned from transaction ordering,
-  limiting the required levels of trust and verification across node types, and
-  optimizing network scalability and performance.
-* :ref:`Ledger-Features` --- The immutable, shared ledger encodes the entire
-  transaction history for each channel, and includes SQL-like query capability
-  for efficient auditing and dispute resolution.
-* :ref:`Privacy` --- Channels and private data collections enable private and
-  confidential multi-lateral transactions that are usually required by
-  competing businesses and regulated industries that exchange assets on a common
-  network.
-* :ref:`Security-Membership-Services` --- Permissioned membership provides a
-  trusted blockchain network, where participants know that all transactions can
-  be detected and traced by authorized regulators and auditors.
-* :ref:`Consensus` --- A unique approach to consensus enables the
-  flexibility and scalability needed for the enterprise.
+*: ref: `അസറ്റുകൾ` --- അസറ്റ് നിർവചനങ്ങൾ ഏതാണ്ട് എന്തിനേയും കൈമാറ്റം ചെയ്യാൻ പ്രാപ്‌തമാക്കുന്നു
+ നെറ്റ്വർക്കിലെ പണ മൂല്യം, മുഴുവൻ ഭക്ഷണങ്ങളും മുതൽ പുരാതന കാറുകളും കറൻസി വരെ
+ ഫ്യൂച്ചേഴ്സ്.
+*: ref: `ചെയിൻ‌കോഡ്` --- ഇടപാട് ക്രമത്തിൽ നിന്ന് ചെയിൻ‌കോഡ് എക്സിക്യൂഷൻ വിഭജിച്ചിരിക്കുന്നു,
+ നോഡ് തരങ്ങളിലുടനീളം ആവശ്യമായ വിശ്വാസ്യതയും പരിശോധനയും പരിമിതപ്പെടുത്തുന്നു, കൂടാതെ
+ നെറ്റ്‌വർക്ക് സ്കേലബിളിറ്റിയും പ്രകടനവും ഒപ്റ്റിമൈസ് ചെയ്യുന്നു.
+*: ref: `ലെഡ്‌ജർ‌ സവിശേഷതകൾ‌` --- മാറ്റമില്ലാത്ത, പങ്കിട്ട ലെഡ്ജർ‌ മുഴുവനായും എൻ‌കോഡുചെയ്യുന്നു
+ ഓരോ ചാനലിനുമുള്ള ഇടപാട് ചരിത്രം, കൂടാതെ SQL പോലുള്ള അന്വേഷണ ശേഷിയും ഉൾപ്പെടുന്നു
+ കാര്യക്ഷമമായ ഓഡിറ്റിംഗിനും തർക്ക പരിഹാരത്തിനും.
+*: ref: `സ്വകാര്യത` --- ചാനലുകളും സ്വകാര്യ ഡാറ്റ ശേഖരണങ്ങളും സ്വകാര്യവും
+ സാധാരണയായി ആവശ്യമുള്ള രഹസ്യാത്മക മൾട്ടി-ലാറ്ററൽ ഇടപാടുകൾ
+ പൊതുവായ ബിസിനസ്സിൽ ആസ്തി കൈമാറ്റം ചെയ്യുന്ന മത്സര ബിസിനസ്സുകളും നിയന്ത്രിത വ്യവസായങ്ങളും
+ നെറ്റ്‌വർക്ക്.
+*: ref: `സെക്യൂരിറ്റി-മെംബർഷിപ്പ്-സേവനങ്ങൾ` --- അനുവദനീയമായ അംഗത്വം നൽകുന്നു a
+ എല്ലാ ഇടപാടുകൾക്കും കഴിയുമെന്ന് പങ്കെടുക്കുന്നവർക്ക് അറിയാവുന്ന വിശ്വസനീയമായ ബ്ലോക്ക്‌ചെയിൻ നെറ്റ്‌വർക്ക്
+ അംഗീകൃത റെഗുലേറ്റർമാരും ഓഡിറ്റർമാരും കണ്ടെത്തുകയും കണ്ടെത്തുകയും ചെയ്യും.
+*: ref: `സമവായം` --- സമവായത്തോടുള്ള ഒരു സവിശേഷ സമീപനം പ്രാപ്തമാക്കുന്നു
+ എന്റർപ്രൈസിന് ആവശ്യമായ വഴക്കവും സ്കേലബിളിറ്റിയും.
 
-.. _Assets:
+.. _അസെറ്റുകൾ:
 
-Assets
+അസറ്റുകൾ
 ------
 
-Assets can range from the tangible (real estate and hardware) to the intangible
-(contracts and intellectual property).  Hyperledger Fabric provides the
-ability to modify assets using chaincode transactions.
+സ്‌പഷ്‌ടമായ (റിയൽ എസ്റ്റേറ്റ്, ഹാർഡ്‌വെയർ) മുതൽ അദൃശ്യമായത് വരെ അസറ്റുകൾക്ക് കഴിയും
+(കരാറുകളും ബ property ദ്ധിക സ്വത്തവകാശവും). ഹൈപ്പർലെഡ്ജർ ഫാബ്രിക് നൽകുന്നു
+ചെയിൻ‌കോഡ് ഇടപാടുകൾ ഉപയോഗിച്ച് അസറ്റുകൾ പരിഷ്‌ക്കരിക്കാനുള്ള കഴിവ്.
 
-Assets are represented in Hyperledger Fabric as a collection of
-key-value pairs, with state changes recorded as transactions on a :ref:`Channel`
-ledger.  Assets can be represented in binary and/or JSON form.
+ഒരു ശേഖരമായി അസറ്റുകളെ ഹൈപ്പർലെഡ്ജർ ഫാബ്രിക്കിൽ പ്രതിനിധീകരിക്കുന്നു
+കീ-മൂല്യ ജോഡികൾ, സംസ്ഥാന മാറ്റങ്ങൾ a: ref: `ചാനൽ` എന്നതിലെ ഇടപാടുകളായി രേഖപ്പെടുത്തുന്നു
+ലെഡ്ജർ. അസറ്റുകളെ ബൈനറി കൂടാതെ / അല്ലെങ്കിൽ JSON രൂപത്തിൽ പ്രതിനിധീകരിക്കാം.
 
-.. _Chaincode:
+.. _ചെയിൻ‌കോഡ്:
 
-Chaincode
+ചെയിൻകോഡ്
 ---------
 
-Chaincode is software defining an asset or assets, and the transaction instructions for
-modifying the asset(s); in other words, it's the business logic.  Chaincode enforces the rules for reading
-or altering key-value pairs or other state database information. Chaincode functions execute against
-the ledger's current state database and are initiated through a transaction proposal. Chaincode execution
-results in a set of key-value writes (write set) that can be submitted to the network and applied to
-the ledger on all peers.
+ഒരു അസറ്റിനെയോ ആസ്തികളെയോ നിർവചിക്കുന്ന സോഫ്റ്റ്വെയറാണ് ചൈൻ‌കോഡ്, കൂടാതെ ഇടപാട് നിർദ്ദേശങ്ങളും
+അസറ്റ് (കൾ) പരിഷ്കരിക്കുന്നു; മറ്റൊരു വിധത്തിൽ പറഞ്ഞാൽ, ഇത് ബിസിനസ്സ് യുക്തിയാണ്. ചെയിൻകോഡ് വായനയ്ക്കുള്ള നിയമങ്ങൾ നടപ്പിലാക്കുന്നു
+അല്ലെങ്കിൽ കീ-മൂല്യ ജോഡികൾ അല്ലെങ്കിൽ മറ്റ് സംസ്ഥാന ഡാറ്റാബേസ് വിവരങ്ങൾ മാറ്റുക. ചെയിൻ‌കോഡ് ഫംഗ്ഷനുകൾ‌ക്കെതിരെ പ്രവർത്തിക്കുന്നു
+ലെഡ്ജറിന്റെ നിലവിലെ സ്റ്റേറ്റ് ഡാറ്റാബേസ്, അവ ഒരു ഇടപാട് നിർദ്ദേശത്തിലൂടെയാണ് ആരംഭിക്കുന്നത്. ചെയിൻ‌കോഡ് നിർവ്വഹണം
+ഒരു കൂട്ടം കീ-വാല്യു റൈറ്റുകളിൽ (റൈറ്റ് സെറ്റ്) ഫലങ്ങൾ നെറ്റ്വർക്കിലേക്ക് സമർപ്പിക്കാനും പ്രയോഗിക്കാനും കഴിയും
+എല്ലാ സമപ്രായക്കാരിലും ലെഡ്ജർ.
 
-.. _Ledger-Features:
+.. _ ലെഡ്ജർ-സവിശേഷതകൾ:
 
-Ledger Features
+ലെഡ്ജർ സവിശേഷതകൾ
 ---------------
 
-The ledger is the sequenced, tamper-resistant record of all state transitions in the fabric.  State
-transitions are a result of chaincode invocations ('transactions') submitted by participating
-parties.  Each transaction results in a set of asset key-value pairs that are committed to the
-ledger as creates, updates, or deletes.
+ഫാബ്രിക്കിലെ എല്ലാ സംസ്ഥാന പരിവർത്തനങ്ങളുടെയും ക്രമം, ടാംപർ-റെസിസ്റ്റന്റ് റെക്കോർഡ് ആണ് ലെഡ്ജർ. സംസ്ഥാനം
+പങ്കെടുക്കുന്നതിലൂടെ സമർപ്പിച്ച ചെയിൻകോഡ് ഇൻവോക്കേഷനുകളുടെ ('ഇടപാടുകൾ') ഫലമാണ് പരിവർത്തനങ്ങൾ
+പാർട്ടികൾ. ഓരോ ഇടപാടുകളും പ്രതിജ്ഞാബദ്ധമായ ഒരു കൂട്ടം അസറ്റ് കീ-മൂല്യ ജോഡികളായി മാറുന്നു
+ലെഡ്ജർ സൃഷ്ടിക്കുകയോ അപ്‌ഡേറ്റുചെയ്യുകയോ ഇല്ലാതാക്കുകയോ ചെയ്യുന്നു.
 
-The ledger is comprised of a blockchain ('chain') to store the immutable, sequenced record in
-blocks, as well as a state database to maintain current fabric state.  There is one ledger per
-channel. Each peer maintains a copy of the ledger for each channel of which they are a member.
+ലെഡ്ജറിൽ മാറ്റമില്ലാത്തതും ക്രമത്തിലുള്ളതുമായ റെക്കോർഡ് സംഭരിക്കുന്നതിന് ഒരു ബ്ലോക്ക്ചെയിൻ ('ചെയിൻ') അടങ്ങിയിരിക്കുന്നു
+ബ്ലോക്കുകൾ, നിലവിലെ ഫാബ്രിക് നില നിലനിർത്തുന്നതിനുള്ള ഒരു സ്റ്റേറ്റ് ഡാറ്റാബേസ്. ഓരോന്നിനും ഒരു ലെഡ്ജർ ഉണ്ട്
+ചാനൽ. ഓരോ പിയറും അംഗമായ ഓരോ ചാനലിനുമായി ലെഡ്ജറിന്റെ ഒരു പകർപ്പ് സൂക്ഷിക്കുന്നു.
 
-Some features of a Fabric ledger:
+ഒരു ഫാബ്രിക് ലെഡ്ജറിന്റെ ചില സവിശേഷതകൾ:
 
-- Query and update ledger using key-based lookups, range queries, and composite key queries
-- Read-only queries using a rich query language (if using CouchDB as state database)
-- Read-only history queries --- Query ledger history for a key, enabling data provenance scenarios
-- Transactions consist of the versions of keys/values that were read in chaincode (read set) and keys/values that were written in chaincode (write set)
-- Transactions contain signatures of every endorsing peer and are submitted to ordering service
-- Transactions are ordered into blocks and are "delivered" from an ordering service to peers on a channel
-- Peers validate transactions against endorsement policies and enforce the policies
-- Prior to appending a block, a versioning check is performed to ensure that states for assets that were read have not changed since chaincode execution time
-- There is immutability once a transaction is validated and committed
-- A channel's ledger contains a configuration block defining policies, access control lists, and other pertinent information
-- Channels contain :ref:`MSP` instances allowing for crypto materials to be derived from different certificate authorities
+- കീ അടിസ്ഥാനമാക്കിയുള്ള ലുക്കപ്പുകൾ, ശ്രേണി അന്വേഷണങ്ങൾ, സംയോജിത കീ ചോദ്യങ്ങൾ എന്നിവ ഉപയോഗിച്ച് ലെഡ്ജർ അന്വേഷിച്ച് അപ്‌ഡേറ്റുചെയ്യുക
+- സമ്പന്നമായ ചോദ്യ ഭാഷ ഉപയോഗിച്ച് വായന-മാത്രം ചോദ്യങ്ങൾ (സംസ്ഥാന ഡാറ്റാബേസായി CouchDB ഉപയോഗിക്കുകയാണെങ്കിൽ)
+- വായന-മാത്രം ചരിത്ര അന്വേഷണങ്ങൾ --- ഒരു കീയ്ക്കായി ലെഡ്ജർ ചരിത്രം അന്വേഷിക്കുക, ഡാറ്റ തെളിയിക്കൽ സാഹചര്യങ്ങൾ പ്രാപ്തമാക്കുന്നു
+- ഇടപാടുകളിൽ ചെയിൻ‌കോഡിൽ‌ വായിച്ച കീകളുടെ / മൂല്യങ്ങളുടെ പതിപ്പുകളും (റീഡ് സെറ്റ്) ചെയിൻ‌കോഡിൽ‌ എഴുതിയ കീകൾ‌ / മൂല്യങ്ങളും (റൈറ്റ് സെറ്റ്) അടങ്ങിയിരിക്കുന്നു.
+- ഇടപാടുകളിൽ അംഗീകരിക്കുന്ന ഓരോ പിയറിന്റെയും ഒപ്പുകൾ അടങ്ങിയിരിക്കുന്നു, അവ ഓർഡർ സേവനത്തിന് സമർപ്പിക്കുന്നു
+- ഇടപാടുകൾ ബ്ലോക്കുകളായി ക്രമീകരിക്കുകയും ഒരു ഓർഡറിംഗ് സേവനത്തിൽ നിന്ന് ഒരു ചാനലിലെ സമപ്രായക്കാർക്ക് "കൈമാറുകയും" ചെയ്യുന്നു
+- അംഗീകാര നയങ്ങൾക്കെതിരായ ഇടപാടുകൾ സമപ്രായക്കാർ സാധൂകരിക്കുകയും നയങ്ങൾ നടപ്പിലാക്കുകയും ചെയ്യുന്നു
+- ഒരു ബ്ലോക്ക് കൂട്ടിച്ചേർക്കുന്നതിന് മുമ്പ്, ചെയിൻ‌കോഡ് എക്സിക്യൂഷൻ സമയം മുതൽ വായിച്ച ആസ്തികളുടെ സംസ്ഥാനങ്ങളിൽ മാറ്റം വന്നിട്ടില്ലെന്ന് ഉറപ്പാക്കുന്നതിന് ഒരു പതിപ്പ് പരിശോധന നടത്തുന്നു.
+- ഒരു ഇടപാട് സാധൂകരിക്കുകയും പ്രതിജ്ഞാബദ്ധമാവുകയും ചെയ്തുകഴിഞ്ഞാൽ മാറ്റമില്ല
+- ഒരു ചാനലിന്റെ ലെഡ്ജറിൽ നയങ്ങൾ, ആക്സസ് നിയന്ത്രണ ലിസ്റ്റുകൾ, മറ്റ് പ്രസക്തമായ വിവരങ്ങൾ എന്നിവ നിർവചിക്കുന്ന ഒരു കോൺഫിഗറേഷൻ ബ്ലോക്ക് അടങ്ങിയിരിക്കുന്നു
+- ചാനലുകളിൽ ഇവ അടങ്ങിയിരിക്കുന്നു: ref: ക്രിപ്റ്റോ മെറ്റീരിയലുകൾ വിവിധ സർട്ടിഫിക്കറ്റ് അതോറിറ്റികളിൽ നിന്ന് എടുക്കാൻ അനുവദിക്കുന്ന `എംഎസ്പി` സംഭവങ്ങൾ
 
-See the :doc:`ledger` topic for a deeper dive on the databases, storage structure, and "query-ability."
+ഡാറ്റാബേസുകൾ‌, സംഭരണ ​​ഘടന, "അന്വേഷണ-കഴിവ്" എന്നിവയെക്കുറിച്ച് കൂടുതൽ‌ ആഴത്തിൽ‌ അറിയുന്നതിന്: doc: `ലെഡ്ജർ‌` വിഷയം കാണുക.
 
-.. _Privacy:
+.. _സ്വഭാവം:
 
-Privacy
+സ്വകാര്യത
 -------
 
-Hyperledger Fabric employs an immutable ledger on a per-channel basis, as well as
-chaincode that can manipulate and modify the current state of assets (i.e. update
-key-value pairs).  A ledger exists in the scope of a channel --- it can be shared
-across the entire network (assuming every participant is operating on one common
-channel) --- or it can be privatized to include only a specific set of participants.
+ഹൈപ്പർലെഡ്ജർ ഫാബ്രിക് ഓരോ ചാനൽ അടിസ്ഥാനത്തിലും മാറ്റമില്ലാത്ത ലെഡ്ജർ ഉപയോഗിക്കുന്നു
+നിലവിലെ ആസ്തികളുടെ അവസ്ഥ (അതായത് അപ്‌ഡേറ്റ്) കൈകാര്യം ചെയ്യാനും പരിഷ്‌ക്കരിക്കാനും കഴിയുന്ന ചെയിൻ‌കോഡ്
+കീ-മൂല്യ ജോഡികൾ). ഒരു ചാനലിന്റെ പരിധിയിൽ ഒരു ലെഡ്ജർ നിലവിലുണ്ട് --- ഇത് പങ്കിടാം
+മുഴുവൻ നെറ്റ്‌വർക്കിലുടനീളം (ഓരോ പങ്കാളിയും ഒരു പൊതുവായ പ്രവർത്തനത്തിലാണ് പ്രവർത്തിക്കുന്നതെന്ന് കരുതുക
+ചാനൽ) --- അല്ലെങ്കിൽ ഒരു പ്രത്യേക പങ്കാളികളെ മാത്രം ഉൾപ്പെടുത്തുന്നത് സ്വകാര്യവൽക്കരിക്കാനാകും.
 
-In the latter scenario, these participants would create a separate channel and
-thereby isolate/segregate their transactions and ledger.  In order to solve
-scenarios that want to bridge the gap between total transparency and privacy,
-chaincode can be installed only on peers that need to access the asset states
-to perform reads and writes (in other words, if a chaincode is not installed on
-a peer, it will not be able to properly interface with the ledger).
+പിന്നീടുള്ള സാഹചര്യത്തിൽ, ഈ പങ്കാളികൾ ഒരു പ്രത്യേക ചാനൽ സൃഷ്ടിക്കുകയും ഒപ്പം
+അതുവഴി അവരുടെ ഇടപാടുകളും ലെഡ്ജറും വേർതിരിക്കുക / വേർതിരിക്കുക. പരിഹരിക്കുന്നതിന്
+മൊത്തം സുതാര്യതയും സ്വകാര്യതയും തമ്മിലുള്ള ദൂരം നികത്താൻ ആഗ്രഹിക്കുന്ന സാഹചര്യങ്ങൾ,
+അസറ്റ് സ്റ്റേറ്റുകളിലേക്ക് പ്രവേശിക്കേണ്ട സമപ്രായക്കാരിൽ മാത്രമേ ചെയിൻകോഡ് ഇൻസ്റ്റാൾ ചെയ്യാൻ കഴിയൂ
+റീഡുകളും റൈറ്റുകളും നിർവ്വഹിക്കുന്നതിന് (മറ്റൊരു തരത്തിൽ പറഞ്ഞാൽ, ഒരു ചെയിൻ‌കോഡ് ഇൻസ്റ്റാൾ ചെയ്തിട്ടില്ലെങ്കിൽ
+ഒരു പിയർ, ഇതിന് ലെഡ്ജറുമായി ശരിയായി ഇന്റർഫേസ് ചെയ്യാൻ കഴിയില്ല).
 
-When a subset of organizations on that channel need to keep their transaction
-data confidential, a private data collection (collection) is used to segregate
-this data in a private database, logically separate from the channel ledger,
-accessible only to the authorized subset of organizations.
+ആ ചാനലിലെ ഓർഗനൈസേഷനുകളുടെ ഒരു ഉപസെറ്റ് അവരുടെ ഇടപാട് നിലനിർത്തേണ്ടിവരുമ്പോൾ
+ഡാറ്റ രഹസ്യാത്മകമായി, വേർതിരിക്കുന്നതിന് ഒരു സ്വകാര്യ ഡാറ്റ ശേഖരണം (ശേഖരം) ഉപയോഗിക്കുന്നു
+ഈ ഡാറ്റ ഒരു സ്വകാര്യ ഡാറ്റാബേസിലെ, ചാനൽ ലെഡ്ജറിൽ നിന്ന് യുക്തിപരമായി വേർതിരിച്ചിരിക്കുന്നു,
+ഓർ‌ഗനൈസേഷനുകളുടെ അംഗീകൃത ഉപസെറ്റിലേക്ക് മാത്രം ആക്‌സസ് ചെയ്യാൻ‌ കഴിയും.
 
-Thus, channels keep transactions private from the broader network whereas
-collections keep data private between subsets of organizations on the channel.
+അതിനാൽ, ചാനലുകൾ ഇടപാടുകളെ വിശാലമായ നെറ്റ്‌വർക്കിൽ നിന്ന് സ്വകാര്യമായി സൂക്ഷിക്കുന്നു
+ശേഖരങ്ങൾ ചാനലിലെ ഓർഗനൈസേഷനുകളുടെ ഉപസെറ്റുകൾക്കിടയിൽ ഡാറ്റ സ്വകാര്യമായി സൂക്ഷിക്കുന്നു.
 
-To further obfuscate the data, values within chaincode can be encrypted
-(in part or in total) using common cryptographic algorithms such as AES before
-sending transactions to the ordering service and appending blocks to the ledger.
-Once encrypted data has been written to the ledger, it can be decrypted only by
-a user in possession of the corresponding key that was used to generate the cipher
-text.
+ഡാറ്റയെ കൂടുതൽ വ്യക്തമാക്കുന്നതിന്, ചെയിൻ‌കോഡിനുള്ളിലെ മൂല്യങ്ങൾ‌ എൻ‌ക്രിപ്റ്റ് ചെയ്യാൻ‌ കഴിയും
+(ഭാഗികമായോ മൊത്തമായോ) മുമ്പ് AES പോലുള്ള സാധാരണ ക്രിപ്റ്റോഗ്രാഫിക് അൽ‌ഗോരിതം ഉപയോഗിക്കുന്നു
+ഓർഡറിംഗ് സേവനത്തിലേക്ക് ഇടപാടുകൾ അയയ്ക്കുകയും ലെഡ്ജറിലേക്ക് ബ്ലോക്കുകൾ ചേർക്കുകയും ചെയ്യുന്നു.
+എൻ‌ക്രിപ്റ്റ് ചെയ്ത ഡാറ്റ ലെഡ്ജറിലേക്ക് എഴുതിക്കഴിഞ്ഞാൽ, അത് മാത്രമേ ഡീക്രിപ്റ്റ് ചെയ്യാൻ കഴിയൂ
+സൈഫർ‌ ജനറേറ്റ് ചെയ്യുന്നതിന് ഉപയോഗിച്ച അനുബന്ധ കീ കൈവശമുള്ള ഒരു ഉപയോക്താവ്
+വാചകം.
 
-See the :doc:`private-data-arch` topic for more details on how to achieve
-privacy on your blockchain network.
+എങ്ങനെ നേടാം എന്നതിനെക്കുറിച്ചുള്ള കൂടുതൽ വിവരങ്ങൾക്ക്: doc: `private-data-arch` വിഷയം കാണുക
+നിങ്ങളുടെ ബ്ലോക്ക്‌ചെയിൻ നെറ്റ്‌വർക്കിലെ സ്വകാര്യത.
 
-.. _Security-Membership-Services:
+.. _ സുരക്ഷ-അംഗത്വ-സേവനങ്ങൾ:
 
-Security & Membership Services
+സുരക്ഷയും അംഗത്വ സേവനങ്ങളും
 ------------------------------
 
-Hyperledger Fabric underpins a transactional network where all participants have
-known identities.  Public Key Infrastructure is used to generate cryptographic
-certificates which are tied to organizations, network components, and end users
-or client applications.  As a result, data access control can be manipulated and
-governed on the broader network and on channel levels.  This "permissioned" notion
-of Hyperledger Fabric, coupled with the existence and capabilities of channels,
-helps address scenarios where privacy and confidentiality are paramount concerns.
+പങ്കെടുക്കുന്ന എല്ലാവർക്കുമുള്ള ഒരു ഇടപാട് നെറ്റ്‌വർക്കിന് ഹൈപ്പർലെഡ്ജർ ഫാബ്രിക് അടിവരയിടുന്നു
+അറിയപ്പെടുന്ന ഐഡന്റിറ്റികൾ. ക്രിപ്റ്റോഗ്രാഫിക് സൃഷ്ടിക്കുന്നതിന് പബ്ലിക് കീ ഇൻഫ്രാസ്ട്രക്ചർ ഉപയോഗിക്കുന്നു
+ഓർ‌ഗനൈസേഷനുകൾ‌, നെറ്റ്‌വർക്ക് ഘടകങ്ങൾ‌, അന്തിമ ഉപയോക്താക്കൾ‌ എന്നിവരുമായി ബന്ധപ്പെടുത്തിയിരിക്കുന്ന സർ‌ട്ടിഫിക്കറ്റുകൾ‌
+അല്ലെങ്കിൽ ക്ലയന്റ് അപ്ലിക്കേഷനുകൾ. തൽഫലമായി, ഡാറ്റ ആക്സസ് നിയന്ത്രണം കൈകാര്യം ചെയ്യാനും ഒപ്പം
+വിശാലമായ നെറ്റ്‌വർക്കിലും ചാനൽ തലങ്ങളിലും നിയന്ത്രിക്കുന്നു. ഈ "അനുവദനീയമായ" ആശയം
+ചാനലുകളുടെ നിലനിൽപ്പും കഴിവുകളും സഹിതം ഹൈപ്പർലെഡ്ജർ ഫാബ്രിക്,
+സ്വകാര്യതയും രഹസ്യാത്മകതയും പരമപ്രധാനമായ സാഹചര്യങ്ങളെ അഭിസംബോധന ചെയ്യാൻ സഹായിക്കുന്നു.
 
-See the :doc:`msp` topic to better understand cryptographic
-implementations, and the sign, verify, authenticate approach used in
-Hyperledger Fabric.
+ക്രിപ്‌റ്റോഗ്രാഫിക് നന്നായി മനസിലാക്കാൻ: doc: `msp` വിഷയം കാണുക
+നടപ്പിലാക്കലുകൾ, ഒപ്പം ഉപയോഗിച്ച ചിഹ്നം, സ്ഥിരീകരിക്കുക, പ്രാമാണീകരിക്കുക
+ഹൈപ്പർലെഡ്ജർ ഫാബ്രിക്.
 
-.. _Consensus:
+.. _ സമവായം:
 
-Consensus
+സമവായം
 ---------
 
-In distributed ledger technology, consensus has recently become synonymous with
-a specific algorithm, within a single function. However, consensus encompasses more
-than simply agreeing upon the order of transactions, and this differentiation is
-highlighted in Hyperledger Fabric through its fundamental role in the entire
-transaction flow, from proposal and endorsement, to ordering, validation and commitment.
-In a nutshell, consensus is defined as the full-circle verification of the correctness of
-a set of transactions comprising a block.
+വിതരണം ചെയ്ത ലെഡ്ജർ സാങ്കേതികവിദ്യയിൽ, സമവായം അടുത്തിടെ പര്യായമായി മാറി
+ഒരൊറ്റ ഫംഗ്ഷനുള്ളിൽ ഒരു നിർദ്ദിഷ്ട അൽഗോരിതം. എന്നിരുന്നാലും, സമവായം കൂടുതൽ ഉൾക്കൊള്ളുന്നു
+ഇടപാടുകളുടെ ക്രമം അംഗീകരിക്കുന്നതിനേക്കാൾ, ഈ വ്യത്യാസം
+മൊത്തത്തിൽ അതിന്റെ അടിസ്ഥാന പങ്ക് വഴി ഹൈപ്പർലെഡ്ജർ ഫാബ്രിക്കിൽ എടുത്തുകാണിച്ചിരിക്കുന്നു
+ഇടപാട്, നിർ‌ദ്ദേശം, അംഗീകാരം എന്നിവ മുതൽ‌ ഓർ‌ഡറിംഗ്, മൂല്യനിർണ്ണയം, പ്രതിബദ്ധത എന്നിവയിലേക്ക്.
+ചുരുക്കത്തിൽ, സമവായത്തെ നിർവചിച്ചിരിക്കുന്നത് അതിന്റെ കൃത്യതയുടെ പൂർണ്ണ-സർക്കിൾ പരിശോധനയാണ്
+ഒരു ബ്ലോക്ക് അടങ്ങുന്ന ഒരു കൂട്ടം ഇടപാടുകൾ.
 
-Consensus is achieved ultimately when the order and results of a block's
-transactions have met the explicit policy criteria checks. These checks and balances
-take place during the lifecycle of a transaction, and include the usage of
-endorsement policies to dictate which specific members must endorse a certain
-transaction class, as well as system chaincodes to ensure that these policies
-are enforced and upheld.  Prior to commitment, the peers will employ these
-system chaincodes to make sure that enough endorsements are present, and that
-they were derived from the appropriate entities.  Moreover, a versioning check
-will take place during which the current state of the ledger is agreed or
-consented upon, before any blocks containing transactions are appended to the ledger.
-This final check provides protection against double spend operations and other
-threats that might compromise data integrity, and allows for functions to be
-executed against non-static variables.
+ഒരു ബ്ലോക്കിന്റെ ക്രമവും ഫലവും ആത്യന്തികമായി സമവായം കൈവരിക്കുന്നു
+ഇടപാടുകൾ വ്യക്തമായ നയ മാനദണ്ഡ പരിശോധനകൾ പാലിച്ചു. ഈ പരിശോധനകളും ബാലൻസുകളും
+ഒരു ഇടപാടിന്റെ ജീവിതചക്രത്തിൽ നടക്കുക, അതിന്റെ ഉപയോഗം ഉൾപ്പെടുത്തുക
+ഏതൊക്കെ നിർദ്ദിഷ്ട അംഗങ്ങൾ ഒരു നിശ്ചിത അംഗം നൽകണമെന്ന് നിർണ്ണയിക്കുന്നതിനുള്ള അംഗീകാര നയങ്ങൾ
+ട്രാൻസാക്ഷൻ ക്ലാസും ഈ നയങ്ങൾ ഉറപ്പാക്കുന്നതിന് സിസ്റ്റം ചെയിൻകോഡുകളും
+നടപ്പിലാക്കുകയും പിന്തുണയ്ക്കുകയും ചെയ്യുന്നു. പ്രതിബദ്ധതയ്‌ക്ക് മുമ്പ്, സമപ്രായക്കാർ ഇവ ഉപയോഗിക്കും
+മതിയായ അംഗീകാരങ്ങൾ ഉണ്ടെന്ന് ഉറപ്പാക്കുന്നതിന് സിസ്റ്റം ചെയിൻകോഡുകൾ, അതും
+അവ ഉചിതമായ എന്റിറ്റികളിൽ നിന്ന് ഉരുത്തിരിഞ്ഞതാണ്. മാത്രമല്ല, ഒരു പതിപ്പ് പരിശോധന
+ലെഡ്ജറിന്റെ നിലവിലെ അവസ്ഥ അംഗീകരിക്കുന്ന സമയത്ത് അല്ലെങ്കിൽ നടക്കും
+ഇടപാടുകൾ അടങ്ങിയ ഏതെങ്കിലും ബ്ലോക്കുകൾ ലെഡ്ജറിലേക്ക് കൂട്ടിച്ചേർക്കുന്നതിന് മുമ്പ് സമ്മതിച്ചു.
+ഈ അന്തിമ പരിശോധന ഇരട്ട ചെലവ് പ്രവർത്തനങ്ങളിൽ നിന്നും മറ്റുള്ളവയിൽ നിന്നും പരിരക്ഷ നൽകുന്നു
+ഡാറ്റ സമഗ്രതയെ അപഹരിക്കാനിടയുള്ളതും ഫംഗ്ഷനുകൾ അനുവദിക്കുന്നതുമായ ഭീഷണികൾ
+നോൺ-സ്റ്റാറ്റിക് വേരിയബിളുകൾക്കെതിരെ നടപ്പിലാക്കുന്നു.
 
-In addition to the multitude of endorsement, validity and versioning checks that
-take place, there are also ongoing identity verifications happening in all
-directions of the transaction flow.  Access control lists are implemented on
-hierarchical layers of the network (ordering service down to channels), and
-payloads are repeatedly signed, verified and authenticated as a transaction proposal passes
-through the different architectural components.  To conclude, consensus is not
-merely limited to the agreed upon order of a batch of transactions; rather,
-it is an overarching characterization that is achieved as a byproduct of the ongoing
-verifications that take place during a transaction's journey from proposal to
-commitment.
+അംഗീകാരത്തിന്റെ ബാഹുല്യം കൂടാതെ, സാധുത, പതിപ്പ് എന്നിവ പരിശോധിക്കുന്നു
+നടക്കുക, നിലവിലുള്ള ഐഡന്റിറ്റി പരിശോധനകളും നടക്കുന്നു
+ഇടപാട് പ്രവാഹത്തിന്റെ ദിശകൾ. ആക്‌സസ്സ് നിയന്ത്രണ ലിസ്റ്റുകൾ നടപ്പിലാക്കുന്നു
+നെറ്റ്‌വർക്കിന്റെ ശ്രേണിപരമായ പാളികൾ (ചാനലുകളിലേക്ക് സേവനം ക്രമീകരിക്കാൻ ക്രമീകരിക്കുന്നു), ഒപ്പം
+ഒരു ഇടപാട് നിർദ്ദേശം കടന്നുപോകുമ്പോൾ പേലോഡുകൾ ആവർത്തിച്ച് ഒപ്പിടുകയും സ്ഥിരീകരിക്കുകയും പ്രാമാണീകരിക്കുകയും ചെയ്യുന്നു
+വ്യത്യസ്ത വാസ്തുവിദ്യാ ഘടകങ്ങളിലൂടെ. ഉപസംഹാരമായി, സമവായം അല്ല
+ഒരു കൂട്ടം ഇടപാടുകളുടെ സമ്മതിച്ച ഓർഡറിലേക്ക് പരിമിതപ്പെടുത്തിയിരിക്കുന്നു; പകരം,
+ഇത് നിലവിലുള്ള സ്വഭാവത്തിന്റെ ഉപോൽപ്പന്നമായി കൈവരിക്കുന്ന ഒരു സ്വഭാവ സവിശേഷതയാണ്
+നിർദ്ദേശത്തിൽ നിന്ന് ഒരു ഇടപാടിന്റെ യാത്രയിൽ നടക്കുന്ന പരിശോധനകൾ
+പ്രതിബദ്ധത.
 
-Check out the :doc:`txflow` diagram for a visual representation
-of consensus.
+ഒരു വിഷ്വൽ പ്രാതിനിധ്യത്തിനായി: doc: `txflow` ഡയഗ്രം പരിശോധിക്കുക
+സമവായത്തിന്റെ.
 
-.. Licensed under Creative Commons Attribution 4.0 International License
-   https://creativecommons.org/licenses/by/4.0/
+.. ക്രിയേറ്റീവ് കോമൺസ് ആട്രിബ്യൂഷൻ 4.0 അന്താരാഷ്ട്ര ലൈസൻസിന് കീഴിൽ ലൈസൻസ് നേടി
+ https://creativecommons.org/licenses/by/4.0/
