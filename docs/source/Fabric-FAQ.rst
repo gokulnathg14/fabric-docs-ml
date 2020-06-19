@@ -1,274 +1,248 @@
-Frequently Asked Questions
-==========================
+പതിവായി ചോദിക്കുന്ന ചോദ്യങ്ങൾ
+=========================
 
-Endorsement
+അംഗീകാരം
 -----------
 
 **Endorsement architecture**:
 
-:Question:
-  How many peers in the network need to endorse a transaction?
+: ചോദ്യം:
+ ഒരു ഇടപാട് അംഗീകരിക്കുന്നതിന് നെറ്റ്‌വർക്കിലെ എത്ര പീയേഴ്സ്  ആവശ്യമാണ്?
 
-:Answer:
-  The number of peers required to endorse a transaction is driven by the
-  endorsement policy that is specified in the chaincode definition.
+: ഉത്തരം:
+ ഒരു ഇടപാട് അംഗീകരിക്കുന്നതിന് ആവശ്യമായ പീയേഴ്സ്  എണ്ണം നയിക്കുന്നത്
+ ചെയിൻകോഡ് നിർവചനത്തിൽ വ്യക്തമാക്കിയ അംഗീകാര നയം പ്രകാരമാണ് .
 
-:Question:
-  Does an application client need to connect to all peers?
+: ചോദ്യം:
+ ഒരു അപ്ലിക്കേഷൻ ക്ലയന്റ് എല്ലാ പീയേഴ്സ്മായി  ബന്ധിപ്പിക്കേണ്ടതുണ്ടോ?
 
-:Answer:
-  Clients only need to connect to as many peers as are required by the
-  endorsement policy for the chaincode.
+: ഉത്തരം:
+ ക്ലയന്റുകൾ ആവശ്യപ്പെടുന്നത്ര പീയേഴ്സ്മായി മാത്രം ബന്ധപ്പെടേണ്ടതുണ്ട്
+ ചെയിൻ‌കോഡിനായുള്ള അംഗീകാര നയം  പ്രകാരം .
 
-Security & Access Control
+സുരക്ഷയും പ്രവേശന നിയന്ത്രണവും
 -------------------------
 
-:Question:
-  How do I ensure data privacy?
+: ചോദ്യം:
+ ഡാറ്റ സ്വകാര്യത ഞാൻ എങ്ങനെ ഉറപ്പാക്കും?
 
-:Answer:
-  There are various aspects to data privacy. First, you can segregate your
-  network into channels, where each channel represents a subset of participants
-  that are authorized to see the data for the chaincodes that are deployed to
-  that channel.
+: ഉത്തരം:
+ഡാറ്റ സ്വകാര്യതയ്ക്ക് വിവിധ വശങ്ങളുണ്ട്. ആദ്യം, നിങ്ങൾക്ക് വേർതിരിക്കാനാകും
+  ചാനലുകളിലേക്കുള്ള നെറ്റ്‌വർക്ക്, അവിടെ ഓരോ ചാനലും പങ്കെടുക്കുന്നവരുടെ ഒരു ഉപസെറ്റിനെ പ്രതിനിധീകരിക്കുന്നു, ആ ചാനലിലേക്ക് വിന്യസിച്ചിരിക്കുന്ന ചെയിൻകോഡുകൾക്കായുള്ള ഡാറ്റ കാണാൻ അധികാരമുണ്ട്.
+ രണ്ടാമതായി, ലെഡ്ജർ ഡാറ്റ സ്വകാര്യമായി സൂക്ഷിക്കുന്നതിന് നിങ്ങൾക്ക് `private-data <private-data/private-data.html>`_  ഉപയോഗിക്കാം
+ ഒരു പ്രത്യേക ചാനൽ സൃഷ്ടിക്കാതെ തന്നെ സ്വകാര്യ ഡാറ്റ അംഗീകരിക്കാനോ പ്രതിജ്ഞാബദ്ധമാക്കാനോ ചോദ്യം ചെയ്യാനോ ഉള്ള കഴിവ് ഒരു ചാനലിലെ ഓർഗനൈസേഷനുകളുടെ നിർവചിക്കപ്പെട്ട ഒരു ഉപസെറ്റിനെ ഒരു സ്വകാര്യ ഡാറ്റ ശേഖരണം അനുവദിക്കുന്നു. ചാനലിലെ മറ്റ് പങ്കാളികൾക്ക് ഡാറ്റയുടെ ഒരു ഹാഷ് മാത്രമേ ലഭിക്കൂ.
+ കൂടുതൽ വിവരങ്ങൾക്ക്: doc: `private_data_tutorial` ട്യൂട്ടോറിയൽ കാണുക.
+ ഒരു ചാനലിനുപകരം സ്വകാര്യ ഡാറ്റ എപ്പോൾ ഉപയോഗിക്കണമെന്ന് <private-data/private-data.html#when-to-use-a-collection-within-a-channel-vs-a-separate-channel>`_.
 
-  Second, you can use `private-data <private-data/private-data.html>`_ to keep ledger data private from
-  other organizations on the channel. A private data collection allows a
-  defined subset of organizations on a channel the ability to endorse, commit,
-  or query private data without having to create a separate channel.
-  Other participants on the channel receive only a hash of the data.
-  For more information refer to the :doc:`private_data_tutorial` tutorial.
-  Note that the key concepts topic also explains `when to use private data instead of a channel <private-data/private-data.html#when-to-use-a-collection-within-a-channel-vs-a-separate-channel>`_.
+ മൂന്നാമത്, സ്വകാര്യ ഡാറ്റ ഉപയോഗിച്ച് ഫാബ്രിക് ഹാഷിംഗ് ഡാറ്റയ്ക്ക് പകരമായി,
+ ക്ലയന്റ് അപ്ലിക്കേഷന് വിളിക്കുന്നതിന് മുമ്പ് ഡാറ്റ ഹാഷ് ചെയ്യാനോ എൻ‌ക്രിപ്റ്റ് ചെയ്യാനോ കഴിയും
+നിങ്ങൾ ഡാറ്റ ഹാഷ് ചെയ്യുകയാണെങ്കിൽ, നിങ്ങൾ ഒരു മാർഗം നൽകേണ്ടതുണ്ട്
+ഉറവിട ഡാറ്റ പങ്കിടുക. നിങ്ങൾ ഡാറ്റ എൻ‌ക്രിപ്റ്റ് ചെയ്യുകയാണെങ്കിൽ നിങ്ങൾ നൽകേണ്ടതുണ്ട്
+ ഡീക്രിപ്ഷൻ കീകൾ പങ്കിടാനുള്ള ഒരു മാർഗ്ഗം.
 
-  Third, as an alternative to Fabric hashing the data using private data,
-  the client application can hash or encrypt the data before calling
-  chaincode. If you hash the data then you will need to provide a means to
-  share the source data. If you encrypt the data then you will need to provide
-  a means to share the decryption keys.
+ നാലാമതായി, നിങ്ങളുടെ ഓർഗനൈസേഷനിലെ ചില റോളുകളിലേക്കുള്ള ഡാറ്റ ആക്സസ് നിങ്ങൾക്ക് നിയന്ത്രിക്കാൻ കഴിയും
+ ചെയിൻ‌കോഡ് ലോജിക്കിലേക്ക് ആക്‌സസ്സ് നിയന്ത്രണം സൃഷ്‌ടിക്കുന്നു.
 
-  Fourth, you can restrict data access to certain roles in your organization, by
-  building access control into the chaincode logic.
+ അഞ്ചാമതായി, ലെജർ ഡാറ്റ വിശ്രമത്തിലാണ് ഫയൽ സിസ്റ്റം എൻ‌ക്രിപ്ഷൻ വഴി എൻ‌ക്രിപ്റ്റ് ചെയ്യാൻ കഴിയുന്നത്
+ പിയർ, ഡാറ്റ ഇൻ-ട്രാൻസിറ്റ് ടി‌എൽ‌എസ് വഴി എൻ‌ക്രിപ്റ്റ് ചെയ്യുന്നു.
 
-  Fifth, ledger data at rest can be encrypted via file system encryption on the
-  peer, and data in-transit is encrypted via TLS.
+: ചോദ്യം:
+ ഓർ‌ഡർ‌മാർ‌ ഇടപാട് ഡാറ്റ കാണുന്നുണ്ടോ?
 
-:Question:
-  Do the orderers see the transaction data?
+: ഉത്തരം:
+ ഇല്ല, ഓർ‌ഡർ‌മാർ‌ ഇടപാടുകൾ‌ക്ക് ഓർ‌ഡർ‌ നൽ‌കുന്നു, അവർ‌ ഇടപാടുകൾ‌ തുറക്കുന്നില്ല.
+ ഡാറ്റ ഓർ‌ഡററുകളിലൂടെ കടന്നുപോകാൻ‌ നിങ്ങൾ‌ താൽ‌പ്പര്യപ്പെടുന്നില്ലെങ്കിൽ‌, ഉപയോഗിക്കുക
+ഫാബ്രിക്കിന്റെ സ്വകാര്യ ഡാറ്റ സവിശേഷത. പകരമായി, നിങ്ങൾക്ക് ഹാഷ് അല്ലെങ്കിൽ എൻ‌ക്രിപ്റ്റ് ചെയ്യാൻ കഴിയും
+ചെയിൻ‌കോഡ് വിളിക്കുന്നതിന് മുമ്പ് ക്ലയൻറ് അപ്ലിക്കേഷനിലെ ഡാറ്റ. നിങ്ങൾ എൻക്രിപ്റ്റ് ചെയ്യുകയാണെങ്കിൽ
+ ഡാറ്റ അപ്പോൾ നിങ്ങൾ ഡീക്രിപ്ഷൻ കീകൾ പങ്കിടാൻ ഒരു മാർഗ്ഗം നൽകേണ്ടതുണ്ട്.
 
-:Answer:
-  No, the orderers only order transactions, they do not open the transactions.
-  If you do not want the data to go through the orderers at all, then utilize
-  the private data feature of Fabric.  Alternatively, you can hash or encrypt
-  the data in the client application before calling chaincode. If you encrypt
-  the data then you will need to provide a means to share the decryption keys.
-
-Application-side Programming Model
+ആപ്ലിക്കേഷൻ സൈഡ് പ്രോഗ്രാമിംഗ് മോഡൽ
 ----------------------------------
 
-:Question:
-  How do application clients know the outcome of a transaction?
+: ചോദ്യം:
+ ഒരു ഇടപാടിന്റെ ഫലം അപ്ലിക്കേഷൻ ക്ലയന്റുകൾക്ക് എങ്ങനെ അറിയാം?
 
-:Answer:
-  The transaction simulation results are returned to the client by the
-  endorser in the proposal response.  If there are multiple endorsers, the
-  client can check that the responses are all the same, and submit the results
-  and endorsements for ordering and commitment. Ultimately the committing peers
-  will validate or invalidate the transaction, and the client becomes
-  aware of the outcome via an event, that the SDK makes available to the
-  application client.
+: ഉത്തരം:
+ഇടപാട് സിമുലേഷൻ ഫലങ്ങൾ പ്രൊപ്പോസൽ പ്രതികരണത്തിൽ എൻ‌ഡോഴ്‌സർ ക്ലയന്റിന് തിരികെ നൽകും. ഒന്നിലധികം അംഗീകാരങ്ങൾ ഉണ്ടെങ്കിൽ, ദി
+ക്ലയന്റിന് പ്രതികരണങ്ങളെല്ലാം തുല്യമാണോയെന്ന് പരിശോധിച്ച് ഫലങ്ങൾ സമർപ്പിക്കാൻ കഴിയും
+ഓർ‌ഡറിംഗിനും പ്രതിബദ്ധതയ്‌ക്കുമുള്ള അംഗീകാരങ്ങൾ‌. ആത്യന്തികമായി പ്രതിജ്ഞാബദ്ധരായ സമപ്രായക്കാർ
+ ഇടപാട് സാധൂകരിക്കുകയോ അസാധുവാക്കുകയോ ചെയ്യും, കൂടാതെ ഒരു ഇവന്റ് വഴി ക്ലയന്റ് ഫലത്തെക്കുറിച്ച് ബോധവാന്മാരാകും, SDK ആപ്ലിക്കേഷൻ ക്ലയന്റിന് ലഭ്യമാക്കുന്നു.
 
-:Question:
-  How do I query the ledger data?
+: ചോദ്യം:
+ ലെഡ്ജർ ഡാറ്റ ഞാൻ എങ്ങനെ അന്വേഷിക്കും?
 
-:Answer:
-  Within chaincode you can query based on keys. Keys can be queried by range,
-  and composite keys can be modeled to enable equivalence queries against
-  multiple parameters. For example a composite key of (owner,asset_id) can be
-  used to query all assets owned by a certain entity. These key-based queries
-  can be used for read-only queries against the ledger, as well as in
-  transactions that update the ledger.
+: ഉത്തരം:
+ചെയിൻ‌കോഡിനുള്ളിൽ‌ നിങ്ങൾ‌ക്ക് കീകളെ അടിസ്ഥാനമാക്കി അന്വേഷിക്കാൻ‌ കഴിയും. കീകൾ‌ ശ്രേണി പ്രകാരം അന്വേഷിക്കാൻ‌ കഴിയും,
+ഒപ്പം തുല്യതാ അന്വേഷണങ്ങൾ പ്രാപ്തമാക്കുന്നതിന് സംയോജിത കീകൾ മാതൃകയാക്കാം
+ഒന്നിലധികം പാരാമീറ്ററുകൾ. ഉദാഹരണത്തിന്, ഒരു നിശ്ചിത എന്റിറ്റിയുടെ ഉടമസ്ഥതയിലുള്ള എല്ലാ അസറ്റുകളും അന്വേഷിക്കാൻ (ഉടമ, അസറ്റ്_ഐഡി) ഒരു സംയോജിത കീ ഉപയോഗിക്കാം. ഈ കീ അടിസ്ഥാനമാക്കിയുള്ള ചോദ്യങ്ങൾ ലെഡ്ജറിനെതിരായ വായന-മാത്രം ചോദ്യങ്ങൾക്കും ലെഡ്ജർ അപ്‌ഡേറ്റ് ചെയ്യുന്ന ഇടപാടുകൾക്കും ഉപയോഗിക്കാം.
 
-  If you model asset data as JSON in chaincode and use CouchDB as the state
-  database, you can also perform complex rich queries against the chaincode
-  data values, using the CouchDB JSON query language within chaincode. The
-  application client can perform read-only queries, but these responses are
-  not typically submitted as part of transactions to the ordering service.
+ ചെയിൻ‌കോഡിൽ‌ നിങ്ങൾ‌ അസറ്റ് ഡാറ്റയെ JSON ആയി മോഡൽ‌ ചെയ്യുകയും സ്റ്റേറ്റ് ഡാറ്റാബേസായി CouchDB ഉപയോഗിക്കുകയുമാണെങ്കിൽ‌, നിങ്ങൾക്ക്‌ ചെയിൻ‌കോഡിനെതിരെ സങ്കീർ‌ണ്ണമായ സമ്പന്നമായ ചോദ്യങ്ങൾ‌ നടത്താനും കഴിയും.
+ഡാറ്റാ മൂല്യങ്ങൾ, ചൈൻ‌കോഡിനുള്ളിലെ CouchDB JSON അന്വേഷണ ഭാഷ ഉപയോഗിച്ച്. അപ്ലിക്കേഷൻ ക്ലയന്റിന് വായന-മാത്രം ചോദ്യങ്ങൾ നടത്താൻ കഴിയും, എന്നാൽ ഈ പ്രതികരണങ്ങൾ
+ഓർ‌ഡറിംഗ് സേവനത്തിലേക്കുള്ള ഇടപാടുകളുടെ ഭാഗമായി സാധാരണയായി സമർപ്പിക്കില്ല.
 
-:Question:
-  How do I query the historical data to understand data provenance?
+: ചോദ്യം:
+ ഡാറ്റാ തെളിവ് മനസിലാക്കാൻ ചരിത്രപരമായ ഡാറ്റയെ ഞാൻ എങ്ങനെ അന്വേഷിക്കും?
 
-:Answer:
-  The chaincode API ``GetHistoryForKey()`` will return history of
-  values for a key.
+: ഉത്തരം:
+ ചെയിൻ‌കോഡ് API `` GetHistoryForKey () `` ന്റെ ചരിത്രം നൽകും  ഒരു കീയ്‌ക്കുള്ള മൂല്യങ്ങൾ.
 
-:Question:
-  How to guarantee the query result is correct, especially when the peer being
-  queried may be recovering and catching up on block processing?
+: ചോദ്യം:
+ അന്വേഷണ ഫലം റപ്പനാണെന്നു എങ്ങനെ മനസിലാക്കുന്നു , പ്രത്യേകിച്ചും പിയർ ആയിരിക്കുമ്പോൾ
+ ചോദ്യം ചെയ്യുന്നത് വീണ്ടെടുക്കുകയും ബ്ലോക്ക് പ്രോസസ്സിംഗ് കണ്ടെത്തുകയും ചെയ്യുന്നുണ്ടോ?
 
-:Answer:
-  The client can query multiple peers, compare their block heights, compare
-  their query results, and favor the peers at the higher block heights.
+: ഉത്തരം:
+ ക്ലയന്റിന് ഒന്നിലധികം പീയേഴ്സ്നെ  അന്വേഷിക്കാനും അവരുടെ ബ്ലോക്ക് ഉയരങ്ങൾ താരതമ്യം ചെയ്യാനും കഴിയും
+ അവരുടെ അന്വേഷണ ഫലങ്ങൾ, ഒപ്പം ഉയർന്ന ബ്ലോക്ക് ഉയരങ്ങളിലെ സപീയേഴ്സ്നെ  അനുകൂലിക്കുക.
 
-Chaincode (Smart Contracts and Digital Assets)
+ചെയിൻ‌കോഡ് (സ്മാർട്ട് കരാറുകളും ഡിജിറ്റൽ അസറ്റുകളും)
 ----------------------------------------------
 
-:Question:
-  Does Hyperledger Fabric support smart contract logic?
+: ചോദ്യം:
+ സ്മാർട്ട് കരാർ ലോജിക്കിനെ ഹൈപ്പർലെഡ്ജർ ഫാബ്രിക് പിന്തുണയ്ക്കുന്നുണ്ടോ?
 
-:Answer:
-  Yes. We call this feature :ref:`chaincode`. It is our interpretation of the
-  smart contract method/algorithm, with additional features.
+: ഉത്തരം:
+അതെ. ഞങ്ങൾ ഈ സവിശേഷതയെ വിളിക്കുന്നു: ref: `chaincode`. ഇത് ഞങ്ങളുടെ വ്യാഖ്യാനമാണ്
+ അധിക സവിശേഷതകളുള്ള സ്മാർട്ട് കരാർ രീതി / അൽഗോരിതം.
 
-  A chaincode is programmatic code deployed on the network, where it is
-  executed and validated by chain validators together during the consensus
-  process. Developers can use chaincodes to develop business contracts,
-  asset definitions, and collectively-managed decentralized applications.
+ ഒരു ശൃംഖല നെറ്റ്വർക്കിൽ വിന്യസിച്ചിരിക്കുന്ന പ്രോഗ്രമാറ്റിക് കോഡാണ്, അത് എവിടെയാണ്
+ സമവായ സമയത്ത് ചെയിൻ വാലിഡേറ്റർമാർ ഒരുമിച്ച് നടപ്പിലാക്കുകയും സാധൂകരിക്കുകയും ചെയ്യുന്നു
+പ്രക്രിയ. ബിസിനസ്സ് കരാറുകൾ വികസിപ്പിക്കുന്നതിന് ഡവലപ്പർമാർക്ക് ചെയിൻ‌കോഡുകൾ ഉപയോഗിക്കാൻ കഴിയും,
+ അസറ്റ് നിർവചനങ്ങൾ, കൂട്ടായി നിയന്ത്രിക്കുന്ന വികേന്ദ്രീകൃത അപ്ലിക്കേഷനുകൾ.
 
-:Question:
-  How do I create a business contract?
+: ചോദ്യം:
+ ഒരു ബിസിനസ് കരാർ എങ്ങനെ സൃഷ്ടിക്കും?
 
-:Answer:
-  There are generally two ways to develop business contracts: the first way is
-  to code individual contracts into standalone instances of chaincode; the
-  second way, and probably the more efficient way, is to use chaincode to
-  create decentralized applications that manage the life cycle of one or
-  multiple types of business contracts, and let end users instantiate
-  instances of contracts within these applications.
+: ഉത്തരം:
+ ബിസിനസ്സ് കരാറുകൾ വികസിപ്പിക്കുന്നതിന് സാധാരണയായി രണ്ട് വഴികളുണ്ട്: ആദ്യ മാർഗം
+വ്യക്തിഗത കരാറുകളെ ചെയിൻ‌കോഡിന്റെ ഒറ്റപ്പെട്ട സംഭവങ്ങളിലേക്ക് കോഡ് ചെയ്യുന്നതിന്; 
+ രണ്ടാമത്തെ വഴി, ഒരുപക്ഷേ കൂടുതൽ കാര്യക്ഷമമായ മാർഗം, ചെയിൻ‌കോഡ് ഉപയോഗിക്കുക എന്നതാണ്
+ ഒന്നിന്റെ ജീവിത ചക്രം നിയന്ത്രിക്കുന്ന വികേന്ദ്രീകൃത ആപ്ലിക്കേഷനുകൾ സൃഷ്ടിക്കുക
+ ഒന്നിലധികം തരം ബിസിനസ്സ് കരാറുകളെ ഉപയോഗിച്ച് ,ഈ അപ്ലിക്കേഷനുകളിലെ കരാറുകളെ ഉപയോഗിച്ച്  അന്തിമ ഉപയോക്താക്കളെ തൽക്ഷണം അനുവദിക്കുക.
 
-:Question:
-  How do I create assets?
+: ചോദ്യം:
+ ഞാൻ എങ്ങനെ ആസ്തികൾ സൃഷ്ടിക്കും?
 
-:Answer:
-  Users can use chaincode (for business rules) and membership service (for
-  digital tokens) to design assets, as well as the logic that manages them.
+: ഉത്തരം:
+ ഉപയോക്താക്കൾക്ക് ചെയിൻ‌കോഡും (ബിസിനസ്സ് നിയമങ്ങൾ‌ക്കായി) അംഗത്വ സേവനവും (ഇതിനായി ഉപയോഗിക്കാം
+ ഡിജിറ്റൽ ടോക്കണുകൾ) അസറ്റുകൾ രൂപകൽപ്പന ചെയ്യുന്നതിനും അവ കൈകാര്യം ചെയ്യാനും സാധിക്കും .
 
-  There are two popular approaches to defining assets in most blockchain
-  solutions: the stateless UTXO model, where account balances are encoded
-  into past transaction records; and the account model, where account
-  balances are kept in state storage space on the ledger.
+ മിക്ക ബ്ലോക്ക്ചെയിനിലും ആസ്തികൾ നിർവചിക്കുന്നതിന് രണ്ട് ജനപ്രിയ സമീപനങ്ങളുണ്ട്
+ഒന്നാമതായി, അക്കൗണ്ട് ബാലൻസുകൾ എൻകോഡ് ചെയ്തിട്ടുള്ള സ്റ്റേറ്റ്ലെസ്സ് യുടിഎക്സ്ഒ മോഡൽ
+പഴയ ഇടപാട് രേഖകളിലേക്ക്; രണ്ടാമതായി, അക്കൗണ്ട് മോഡൽ, അക്കൗണ്ട് ബാലൻസുകൾ ലെഡ്ജറിലെ സ്റ്റേറ്റ് സ്റ്റോറേജ് സ്ഥലത്ത് സൂക്ഷിക്കുന്നു.
 
-  Each approach carries its own benefits and drawbacks. This blockchain
-  technology does not advocate either one over the other. Instead, one of our
-  first requirements was to ensure that both approaches can be easily
-  implemented.
+ഓരോ സമീപനവും അതിന്റേതായ നേട്ടങ്ങളും പോരായ്മകളും വഹിക്കുന്നു. ഈ ബ്ലോക്ക്ചെയിൻ
+സാങ്കേതികവിദ്യ ഒന്നിനുപുറകെ ഒന്നായി വാദിക്കുന്നില്ല. പകരം, ഞങ്ങളുടെ ഒന്ന്
+ രണ്ട് സമീപനങ്ങളും എളുപ്പത്തിൽ സാധ്യമാകുമെന്ന് ഉറപ്പാക്കലായിരുന്നു ആദ്യ ആവശ്യകതകൾ
+ നടപ്പിലാക്കി.
 
-:Question:
-  Which languages are supported for writing chaincode?
+: ചോദ്യം:
+ ചെയിൻ‌കോഡ് എഴുതുന്നതിന് പിന്തുണയ്‌ക്കുന്ന ഭാഷകൾ ഏതാണ്?
 
-:Answer:
-  Chaincode can be written in any programming language and executed in
-  containers. Currently, Go, Node.js and Java chaincode are supported.
+: ഉത്തരം:
+ ചെയിൻ‌കോഡ് ഏത് പ്രോഗ്രാമിംഗ് ഭാഷയിലും എഴുതി പ്രവർത്തിപ്പിക്കാം
+പാത്രങ്ങൾ. നിലവിൽ, Go, Node.js, Java chaincode എന്നിവ പിന്തുണയ്‌ക്കുന്നു.
 
-:Question:
-  Does the Hyperledger Fabric have native currency?
+: ചോദ്യം:
+ ഹൈപ്പർലെഡ്ജർ ഫാബ്രിക്കിന് നേറ്റീവ് കറൻസി ഉണ്ടോ?
 
-:Answer:
-  No. However, if you really need a native currency for your chain network,
-  you can develop your own native currency with chaincode. One common attribute
-  of native currency is that some amount will get transacted (the chaincode
-  defining that currency will get called) every time a transaction is processed
-  on its chain.
+: ഉത്തരം:
+ ഇല്ല, എന്നിരുന്നാലും, നിങ്ങളുടെ ചെയിൻ നെറ്റ്‌വർക്കിനായി നിങ്ങൾക്ക് ഒരു നേറ്റീവ് കറൻസി ആവശ്യമുണ്ടെങ്കിൽ,
+ചെയിൻ‌കോഡ് ഉപയോഗിച്ച് നിങ്ങൾക്ക് നിങ്ങളുടെ സ്വന്തം നേറ്റീവ് കറൻസി വികസിപ്പിക്കാൻ കഴിയും. ഒരു പൊതു ആട്രിബ്യൂട്ട്
+ നേറ്റീവ് കറൻസിയുടെ ചില തുക ഇടപാട് നടത്തും എന്നതാണ് (ചെയിൻ‌കോഡ്
+ ഒരു ഇടപാട് പ്രോസസ്സ് ചെയ്യുമ്പോഴെല്ലാം കറൻസി വിളിക്കപ്പെടുമെന്ന് നിർവചിക്കുന്നു)
+ അതിന്റെ ചങ്ങലയിൽ.
 
-Differences in Most Recent Releases
+ഏറ്റവും പുതിയ പതിപ്പുകളിലെ വ്യത്യാസങ്ങൾ
 -----------------------------------
 
-:Question:
-  Where can I find what  are the highlighted differences between releases?
+: ചോദ്യം:
+ റിലീസുകൾ തമ്മിലുള്ള ഹൈലൈറ്റ് ചെയ്ത വ്യത്യാസങ്ങൾ എന്താണെന്ന് എനിക്ക് എവിടെ കണ്ടെത്താനാകും?
 
-:Answer:
-  The differences between any subsequent releases are provided together with
-  the :doc:`releases`.
+: ഉത്തരം:
+ ഏതെങ്കിലും തുടർന്നുള്ള റിലീസുകൾ തമ്മിലുള്ള വ്യത്യാസങ്ങൾ ഒരുമിച്ച് നൽകിയിരിക്കുന്നു
+ : doc: `റിലീസുകൾ`.
 
-:Question:
-  Where to get help for the technical questions not answered above?
+: ചോദ്യം:
+ മുകളിൽ ഉത്തരം നൽകാത്ത സാങ്കേതിക ചോദ്യങ്ങൾക്ക് എവിടെ നിന്ന് സഹായം ലഭിക്കും?
 
-:Answer:
-  Please use `StackOverflow <https://stackoverflow.com/questions/tagged/hyperledger>`__.
+: ഉത്തരം:
+ `സ്റ്റാക്ക്ഓവർഫ്ലോ <https://stackoverflow.com/questions/tagged/hyperledger>` __ ഉപയോഗിക്കുക.
 
-Ordering Service
+ഓർഡർ ചെയ്യൽ സേവനം
 ----------------
 
-:Question:
-  **I have an ordering service up and running and want to switch consensus
-  algorithms. How do I do that?**
+: ചോദ്യം:
+ ** എനിക്ക് ഒരു ഓർ‌ഡറിംഗ് സേവനം ഉണ്ട്, പ്രവർ‌ത്തിക്കുന്നു, ഒപ്പം സമവായം മാറാൻ‌ താൽ‌പ്പര്യപ്പെടുന്നു
+അൽ‌ഗോരിതംസ്. ഞാൻ അത് എങ്ങനെ ചെയ്യും? **
 
-:Answer:
-  This is explicitly not supported.
-
-..
-
-:Question:
-  **What is the orderer system channel?**
-
-:Answer:
-  The orderer system channel (sometimes called ordering system channel) is the
-  channel the orderer is initially bootstrapped with. It is used to orchestrate
-  channel creation. The orderer system channel defines consortia and the initial
-  configuration for new channels. At channel creation time, the organization
-  definition in the consortium, the ``/Channel`` group's values and policies, as
-  well as the ``/Channel/Orderer`` group's values and policies, are all combined
-  to form the new initial channel definition.
+: ഉത്തരം:
+ ഇത് വ്യക്തമായി പിന്തുണയ്ക്കുന്നില്ല.
 
 ..
 
-:Question:
-  **If I update my application channel, should I update my orderer system
-  channel?**
+: ചോദ്യം:
+ ** എന്താണ് ഓർ‌ഡെറർ സിസ്റ്റം ചാനൽ? **
 
-:Answer:
-  Once an application channel is created, it is managed independently of any
-  other channel (including the orderer system channel). Depending on the
-  modification, the change may or may not be desirable to port to other
-  channels. In general, MSP changes should be synchronized across all channels,
-  while policy changes are more likely to be specific to a particular channel.
+: ഉത്തരം:
+ ഓർ‌ഡെറർ സിസ്റ്റം ചാനൽ (ചിലപ്പോൾ ഓർ‌ഡറിംഗ് സിസ്റ്റം ചാനൽ എന്നും വിളിക്കുന്നു) ഓർ‌ഡെറർ‌ തുടക്കത്തിൽ‌ ബൂട്ട്‌സ്‌ട്രാപ്പ് ചെയ്യുന്ന ചാനലാണ്. ചാനൽ സൃഷ്ടിക്കൽ ഓർക്കസ്ട്രേറ്റ് ചെയ്യുന്നതിന് ഇത് ഉപയോഗിക്കുന്നു. ഓർഡറർ സിസ്റ്റം ചാനൽ കൺസോർഷ്യയെയും പ്രാരംഭത്തെയും നിർവചിക്കുന്നു
+പുതിയ ചാനലുകൾക്കായുള്ള കോൺഫിഗറേഷൻ. ചാനൽ സൃഷ്ടിക്കുന്ന സമയത്ത്, ഓർഗനൈസേഷൻ
+കൺസോർഷ്യത്തിലെ നിർവചനം, ```/Channel`` ഗ്രൂപ്പിന്റെ മൂല്യങ്ങളും നയങ്ങളും
+``/Channel/Orderer``ഗ്രൂപ്പിന്റെ മൂല്യങ്ങളും നയങ്ങളും എല്ലാം സംയോജിപ്പിച്ച് പുതിയ പ്രാരംഭ ചാനൽ നിർവചനം രൂപപ്പെടുത്തുന്നു.
 
 ..
 
-:Question:
-  **Can I have an organization act both in an ordering and application role?**
+: ചോദ്യം:
+ ** ഞാൻ എന്റെ ആപ്ലിക്കേഷൻ ചാനൽ അപ്‌ഡേറ്റ് ചെയ്യുകയാണെങ്കിൽ, എന്റെ ഓർഡർ സിസ്റ്റം അപ്‌ഡേറ്റ് ചെയ്യണമോ? **
 
-:Answer:
-  Although this is possible, it is a highly discouraged configuration. By
-  default the ``/Channel/Orderer/BlockValidation`` policy allows any valid
-  certificate of the ordering organizations to sign blocks. If an organization
-  is acting both in an ordering and application role, then this policy should be
-  updated to restrict block signers to the subset of certificates authorized for
-  ordering.
+: ഉത്തരം:
+ ഒരു അപ്ലിക്കേഷൻ ചാനൽ സൃഷ്ടിച്ചുകഴിഞ്ഞാൽ, മറ്റേതൊരു ചാനലിൽ നിന്നും (ഓർഡറർ സിസ്റ്റം ചാനൽ ഉൾപ്പെടെ) സ്വതന്ത്രമായി ഇത് നിയന്ത്രിക്കപ്പെടുന്നു. അനുസരിച്ച്
+ പരിഷ്‌ക്കരണം, മാറ്റം മറ്റുള്ളവയിലേക്ക് പോർട്ട് ചെയ്യുന്നതിന് അഭികാമ്യമോ അല്ലാത്തതോ ആകാം
+ചാനലുകൾ. പൊതുവേ, എം‌എസ്‌പി മാറ്റങ്ങൾ എല്ലാ ചാനലുകളിലും സമന്വയിപ്പിക്കണം,
+നയ മാറ്റങ്ങൾ ഒരു പ്രത്യേക ചാനലിന് മാത്രമായിരിക്കാം.
 
 ..
 
-:Question:
-  **I want to write a consensus implementation for Fabric. Where do I begin?**
+: ചോദ്യം:
+ ** ഒരു ഓർ‌ഡറിംഗിലും ആപ്ലിക്കേഷൻ‌ റോളിലും എനിക്ക് ഒരു ഓർ‌ഗനൈസേഷൻ‌ പ്രവർ‌ത്തിക്കാൻ‌ കഴിയുമോ? **
 
-:Answer:
-  A consensus plugin needs to implement the ``Consenter`` and ``Chain``
-  interfaces defined in the `consensus package`_. There is a plugin built
-  against raft_ . You can study it to learn more for your own implementation. The ordering service code can be found under
-  the `orderer package`_.
-
-.. _consensus package: https://github.com/hyperledger/fabric/blob/release-2.0/orderer/consensus/consensus.go
-.. _raft: https://github.com/hyperledger/fabric/tree/release-2.0/orderer/consensus/etcdraft
-.. _orderer package: https://github.com/hyperledger/fabric/tree/release-2.0/orderer
+: ഉത്തരം:
+ഇത് സാധ്യമാണെങ്കിലും, ഇത് വളരെ നിരുത്സാഹപ്പെടുത്തിയ കോൺഫിഗറേഷനാണ്. എഴുതിയത്
+  സ്ഥിരസ്ഥിതിയായി ``/Channel/Orderer/BlockValidation``നയം ഓർഡറിംഗ് ഓർഗനൈസേഷനുകളുടെ സാധുവായ ഏതെങ്കിലും സർട്ടിഫിക്കറ്റിനെ ബ്ലോക്കുകളിൽ ഒപ്പിടാൻ അനുവദിക്കുന്നു. ഒരു ഓർ‌ഗനൈസേഷൻ‌ ഒരു ഓർ‌ഡറിംഗിലും ആപ്ലിക്കേഷൻ‌ റോളിലും പ്രവർത്തിക്കുന്നുണ്ടെങ്കിൽ‌, ഓർ‌ഡർ‌ ചെയ്യുന്നതിന് അംഗീകാരമുള്ള സർ‌ട്ടിഫിക്കറ്റുകളുടെ ഉപസെറ്റിലേക്ക് ബ്ലോക്ക് സൈനർ‌മാരെ നിയന്ത്രിക്കുന്നതിന് ഈ നയം അപ്‌ഡേറ്റ് ചെയ്യണം.
 
 ..
 
-:Question:
-  **I want to change my ordering service configurations, e.g. batch timeout,
-  after I start the network, what should I do?**
+: ചോദ്യം:
+** ഫാബ്രിക്കിനായി ഒരു സമവായ നടപ്പാക്കൽ എഴുതാൻ ഞാൻ ആഗ്രഹിക്കുന്നു. ഞാൻ എവിടെ തുടങ്ങണം? **
 
-:Answer:
-  This falls under reconfiguring the network. Please consult the topic on
-  :doc:`commands/configtxlator`.
+: ഉത്തരം:
+ ഒരു സമവായ പ്ലഗിൻ ``Consenter``, ``Chain`` എന്നിവ നടപ്പിലാക്കേണ്ടതുണ്ട്
+`consensus package`_ നിർവചിച്ചിരിക്കുന്ന ഇന്റർഫേസുകൾ. ഒരു പ്ലഗിൻ നിർമ്മിച്ചിരിക്കുന്നു
+റാഫ്റ്റിനെതിരെ_ നിങ്ങളുടെ സ്വന്തം നടപ്പാക്കലിനായി കൂടുതലറിയാൻ നിങ്ങൾക്ക് ഇത് പഠിക്കാൻ കഴിയും. ഓർ‌ഡറിംഗ് സേവന കോഡ് ചുവടെ കണ്ടെത്താനാകും
+ `ഓർ‌ഡറർ‌ പാക്കേജ്`_.
+
+.. _കോൺ‌സെൻ‌സ് പാക്കേജ്: https://github.com/hyperledger/fabric/blob/release-2.0/orderer/consensus/consensus.go
+.. _ക്രാഫ്റ്റ്: https://github.com/hyperledger/fabric/tree/release-2.0/orderer/consensus/etcdraft
+.. _ ഓർഡറർ പാക്കേജ്: https://github.com/hyperledger/fabric/tree/release-2.0/orderer
+
+..
+
+: ചോദ്യം:
+ ** എന്റെ ഓർ‌ഡറിംഗ് സേവന കോൺ‌ഫിഗറേഷനുകൾ‌ മാറ്റാൻ‌ ഞാൻ‌ താൽ‌പ്പര്യപ്പെടുന്നു, ഉദാ. ബാച്ച് കാലഹരണപ്പെട്ടു,
+ ഞാൻ നെറ്റ്‌വർക്ക് ആരംഭിച്ച ശേഷം, ഞാൻ എന്തുചെയ്യണം? **
+
+: ഉത്തരം:
+ഇത് നെറ്റ്‌വർക്ക് വീണ്ടും ക്രമീകരിക്കുന്നതിന് കീഴിലാണ്. എന്ന വിഷയത്തിൽ ബന്ധപ്പെടുക
+ : doc: `commands/configtxlator`.
 
 BFT
 ~~~
 
-:Question:
-  **When is a BFT version of the ordering service going to be available?**
+: ചോദ്യം:
+ ** ഓർ‌ഡറിംഗ് സേവനത്തിൻറെ ഒരു ബി‌എഫ്ടി പതിപ്പ് എപ്പോഴാണ് ലഭ്യമാകുക? **
 
-:Answer:
-  No date has been set. We are working towards a release during the 2.x cycle,
-  i.e. it will come with a minor version upgrade in Fabric.
+: ഉത്തരം:
+തീയതി നിശ്ചയിച്ചിട്ടില്ല. 2.x സൈക്കിൾ സമയത്ത് ഒരു റിലീസിനായി ഞങ്ങൾ പ്രവർത്തിക്കുന്നു,
+ അതായത് ഇത് ഫാബ്രിക്കിൽ ഒരു ചെറിയ പതിപ്പ് അപ്‌ഗ്രേഡുമായി വരും.
 
-.. Licensed under Creative Commons Attribution 4.0 International License
-   https://creativecommons.org/licenses/by/4.0/
+.. ക്രിയേറ്റീവ് കോമൺസ് ആട്രിബ്യൂഷൻ 4.0 അന്താരാഷ്ട്ര ലൈസൻസിന് കീഴിൽ ലൈസൻസ് നേടി
+ https://creativecommons.org/licenses/by/4.0/

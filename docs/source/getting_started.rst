@@ -1,64 +1,64 @@
-Getting Started
+ആമുഖം
 ===============
 
-.. toctree::
-   :maxdepth: 1
-   :hidden:
+.. ടോക്ട്രീ ::
+ : പരമാവധി: 1
+ : മറഞ്ഞിരിക്കുന്നു:
 
-   prereqs
-   install
-   test_network
+ prereqs
+ ഇൻസ്റ്റാൾ ചെയ്യുക
+ ടെസ്റ്റ്_നെറ്റ്വർക്ക്
 
-Before we begin, if you haven't already done so, you may wish to check that
-you have all the :doc:`prereqs` installed on the platform(s)
-on which you'll be developing blockchain applications and/or operating
-Hyperledger Fabric.
+ഞങ്ങൾ ആരംഭിക്കുന്നതിന് മുമ്പ്, നിങ്ങൾ ഇതിനകം അങ്ങനെ ചെയ്തിട്ടില്ലെങ്കിൽ, നിങ്ങൾ അത് പരിശോധിക്കാൻ ആഗ്രഹിച്ചേക്കാം
+നിങ്ങൾക്ക് എല്ലാം: doc: `prereqs` പ്ലാറ്റ്ഫോമിൽ (കൾ) ഇൻസ്റ്റാൾ ചെയ്തിട്ടുണ്ട്
+അതിൽ നിങ്ങൾ ബ്ലോക്ക്ചെയിൻ അപ്ലിക്കേഷനുകൾ കൂടാതെ / അല്ലെങ്കിൽ ഓപ്പറേറ്റിംഗ് വികസിപ്പിക്കും
+ഹൈപ്പർലെഡ്ജർ ഫാബ്രിക്.
 
-Once you have the prerequisites installed, you are ready to download and
-install HyperLedger Fabric. While we work on developing real installers for the
-Fabric binaries, we provide a script that will :doc:`install` to your system.
-The script also will download the Docker images to your local registry.
+മുൻവ്യവസ്ഥകൾ ഇൻസ്റ്റാൾ ചെയ്തുകഴിഞ്ഞാൽ, നിങ്ങൾ ഡ download ൺലോഡ് ചെയ്യാൻ തയ്യാറാണ് കൂടാതെ
+ഹൈപ്പർ ലെഡ്ജർ ഫാബ്രിക് ഇൻസ്റ്റാൾ ചെയ്യുക. ഇതിനായി യഥാർത്ഥ ഇൻസ്റ്റാളറുകൾ വികസിപ്പിക്കുന്നതിന് ഞങ്ങൾ പ്രവർത്തിക്കുമ്പോൾ
+ഫാബ്രിക് ബൈനറികൾ, ഇനിപ്പറയുന്നവ ചെയ്യുന്ന ഒരു സ്ക്രിപ്റ്റ് ഞങ്ങൾ നൽകുന്നു: doc: നിങ്ങളുടെ സിസ്റ്റത്തിലേക്ക് `ഇൻസ്റ്റാൾ ചെയ്യുക`.
+സ്ക്രിപ്റ്റ് നിങ്ങളുടെ പ്രാദേശിക രജിസ്ട്രിയിലേക്ക് ഡോക്കർ ഇമേജുകൾ ഡ download ൺലോഡ് ചെയ്യും.
 
-After you have downloaded the Fabric Samples and Docker images to your local
-machine, you can get started working with Fabric with the
-:doc:`test_network` tutorial.
+ഫാബ്രിക് സാമ്പിളുകളും ഡോക്കർ ചിത്രങ്ങളും നിങ്ങളുടെ ലോക്കലിലേക്ക് ഡ download ൺലോഡ് ചെയ്ത ശേഷം
+മെഷീൻ, നിങ്ങൾക്ക് ഫാബ്രിക് ഉപയോഗിച്ച് പ്രവർത്തിക്കാൻ ആരംഭിക്കാം
+: doc: `test_network` ട്യൂട്ടോറിയൽ.
 
-Hyperledger Fabric smart contract (chaincode) APIs
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ഹൈപ്പർലെഡ്ജർ ഫാബ്രിക് സ്മാർട്ട് കരാർ (ചെയിൻകോഡ്) API- കൾ
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Hyperledger Fabric offers a number of APIs to support developing smart contracts (chaincode)
-in various programming languages. Smart contract APIs are available for Go, Node.js, and Java:
+സ്മാർട്ട് കരാറുകൾ (ചെയിൻ‌കോഡ്) വികസിപ്പിക്കുന്നതിന് പിന്തുണയ്‌ക്കുന്നതിന് ഹൈപ്പർ‌ലെഡ്ജർ ഫാബ്രിക് നിരവധി എ‌പി‌ഐകൾ വാഗ്ദാനം ചെയ്യുന്നു.
+വിവിധ പ്രോഗ്രാമിംഗ് ഭാഷകളിൽ. Go, Node.js, Java എന്നിവയ്‌ക്കായി സ്മാർട്ട് കരാർ API- കൾ ലഭ്യമാണ്:
 
-  * `Go contract-api <https://github.com/hyperledger/fabric-contract-api-go>`__.
-  * `Node.js contract API <https://github.com/hyperledger/fabric-chaincode-node>`__ and `Node.js contract API documentation <https://hyperledger.github.io/fabric-chaincode-node/>`__.
-  * `Java contract API <https://github.com/hyperledger/fabric-chaincode-java>`__ and `Java contract API documentation <https://hyperledger.github.io/fabric-chaincode-java/>`__.
+ * `കരാർ-അപി <https://github.com/hyperledger/fabric-contract-api-go>` __.
+ * `Node.js കരാർ API <https://github.com/hyperledger/fabric-chaincode-node>` __, `Node.js കരാർ API ഡോക്യുമെന്റേഷൻ <https://hyperledger.github.io/fabric-chaincode-node /> `__.
+ * `ജാവ കരാർ API <https://github.com/hyperledger/fabric-chaincode-java>` __, `ജാവ കരാർ API ഡോക്യുമെന്റേഷൻ <https://hyperledger.github.io/fabric-chaincode-java/>` __ .
 
-Hyperledger Fabric application SDKs
+ഹൈപ്പർലെഡ്ജർ ഫാബ്രിക് അപ്ലിക്കേഷൻ SDK- കൾ
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Hyperledger Fabric offers a number of SDKs to support developing applications
-in various programming languages. SDKs are available for Node.js and Java:
+വികസ്വര ആപ്ലിക്കേഷനുകളെ പിന്തുണയ്ക്കുന്നതിനായി ഹൈപ്പർലെഡ്ജർ ഫാബ്രിക് നിരവധി എസ്ഡികെകൾ വാഗ്ദാനം ചെയ്യുന്നു
+വിവിധ പ്രോഗ്രാമിംഗ് ഭാഷകളിൽ. Node.js, Java എന്നിവയ്‌ക്കായി SDK- കൾ ലഭ്യമാണ്:
 
-  * `Node.js SDK <https://github.com/hyperledger/fabric-sdk-node>`__ and `Node.js SDK documentation <https://hyperledger.github.io/fabric-sdk-node/>`__.
-  * `Java SDK <https://github.com/hyperledger/fabric-gateway-java>`__ and `Java SDK documentation <https://hyperledger.github.io/fabric-gateway-java/>`__.
+ * `Node.js SDK <https://github.com/hyperledger/fabric-sdk-node>` __, `Node.js SDK ഡോക്യുമെന്റേഷൻ <https://hyperledger.github.io/fabric-sdk-node/> `__.
+ * `ജാവ SDK <https://github.com/hyperledger/fabric-gateway-java>` __, `Java SDK ഡോക്യുമെന്റേഷൻ <https://hyperledger.github.io/fabric-gateway-java/>` __.
 
-In addition, there are two more application SDKs that have not yet been officially released
-(for Python and Go), but they are still available for downloading and testing:
+കൂടാതെ, application ദ്യോഗികമായി ഇതുവരെ പുറത്തുവിട്ടിട്ടില്ലാത്ത രണ്ട് ആപ്ലിക്കേഷൻ എസ്ഡികെകൾ കൂടി ഉണ്ട്
+(പൈത്തൺ, ഗോ എന്നിവയ്‌ക്കായി), പക്ഷേ അവ ഡൗൺലോഡുചെയ്യുന്നതിനും പരിശോധിക്കുന്നതിനും ഇപ്പോഴും ലഭ്യമാണ്:
 
-  * `Python SDK <https://github.com/hyperledger/fabric-sdk-py>`__.
-  * `Go SDK <https://github.com/hyperledger/fabric-sdk-go>`__.
+ * `പൈത്തൺ SDK <https://github.com/hyperledger/fabric-sdk-py>` __.
+ * `SDK പോകുക <https://github.com/hyperledger/fabric-sdk-go>` __.
 
-Currently, Node.js and Java support the new application programming model delivered in
-Hyperledger Fabric v1.4. Support for Go is planned to be delivered in a later release.
+നിലവിൽ, ഡെലിവർ ചെയ്ത പുതിയ ആപ്ലിക്കേഷൻ പ്രോഗ്രാമിംഗ് മോഡലിനെ Node.js ഉം ജാവയും പിന്തുണയ്ക്കുന്നു
+ഹൈപ്പർലെഡ്ജർ ഫാബ്രിക് v1.4. Go- നുള്ള പിന്തുണ പിന്നീടുള്ള ഒരു പതിപ്പിൽ വിതരണം ചെയ്യാൻ പദ്ധതിയിട്ടിരിക്കുന്നു.
 
-Hyperledger Fabric CA
+ഹൈപ്പർലെഡ്ജർ ഫാബ്രിക് സി‌എ
 ^^^^^^^^^^^^^^^^^^^^^
 
-Hyperledger Fabric provides an optional
-`certificate authority service <http://hyperledger-fabric-ca.readthedocs.io/en/latest>`_
-that you may choose to use to generate the certificates and key material
-to configure and manage identity in your blockchain network. However, any CA
-that can generate ECDSA certificates may be used.
+ഹൈപ്പർലെഡ്ജർ ഫാബ്രിക് ഒരു ഓപ്‌ഷണൽ നൽകുന്നു
+`സർ‌ട്ടിഫിക്കറ്റ് അതോറിറ്റി സേവനം <http://hyperledger-fabric-ca.readthedocs.io/en/latest>` _
+സർ‌ട്ടിഫിക്കറ്റുകളും കീ മെറ്റീരിയലുകളും ജനറേറ്റ് ചെയ്യുന്നതിന് നിങ്ങൾ‌ക്ക് ഉപയോഗിക്കാൻ‌ കഴിയും
+നിങ്ങളുടെ ബ്ലോക്ക്‌ചെയിൻ നെറ്റ്‌വർക്കിൽ ഐഡന്റിറ്റി കോൺഫിഗർ ചെയ്യാനും നിയന്ത്രിക്കാനും. എന്നിരുന്നാലും, ഏതെങ്കിലും സി‌എ
+ഇസി‌ഡി‌എസ്‌എ സർ‌ട്ടിഫിക്കറ്റുകൾ‌ സൃഷ്‌ടിക്കാൻ‌ കഴിയും.
 
-.. Licensed under Creative Commons Attribution 4.0 International License
-   https://creativecommons.org/licenses/by/4.0/
+.. ക്രിയേറ്റീവ് കോമൺസ് ആട്രിബ്യൂഷൻ 4.0 അന്താരാഷ്ട്ര ലൈസൻസിന് കീഴിൽ ലൈസൻസ് നേടി
+ https://creativecommons.org/licenses/by/4.0/

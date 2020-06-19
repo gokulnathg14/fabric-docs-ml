@@ -1,682 +1,682 @@
-Glossary
-===========================
+ഗ്ലോസറി
+=========================
 
-Terminology is important, so that all Hyperledger Fabric users and developers
-agree on what we mean by each specific term. What is a smart contract for
-example. The documentation will reference the glossary as needed, but feel free
-to read the entire thing in one sitting if you like; it's pretty enlightening!
+ടെർമിനോളജി പ്രധാനമാണ്, അതിനാൽ എല്ലാ ഹൈപ്പർലെഡ്ജർ ഫാബ്രിക് ഉപയോക്താക്കളും ഡവലപ്പർമാരും
+ഓരോ നിർദ്ദിഷ്ട പദത്തിലും ഞങ്ങൾ എന്താണ് ഉദ്ദേശിക്കുന്നതെന്ന് അംഗീകരിക്കുക. എന്താണ് ഒരു മികച്ച കരാർ
+ഉദാഹരണം. ഡോക്യുമെന്റേഷൻ ആവശ്യാനുസരണം ഗ്ലോസറിയെ പരാമർശിക്കും, പക്ഷേ മടിക്കേണ്ടതില്ല
+നിങ്ങൾക്ക് താൽപ്പര്യമുണ്ടെങ്കിൽ ഒരു ഇരിപ്പിടത്തിൽ മുഴുവൻ കാര്യങ്ങളും വായിക്കാൻ; ഇത് വളരെ പ്രബുദ്ധമാണ്!
 
-.. _Anchor-Peer:
+.. _ ആങ്കർ-പിയർ:
 
-Anchor Peer
+ആങ്കർ പിയർ
 -----------
 
-Used by gossip to make sure peers in different organizations know about each other.
+വിവിധ ഓർഗനൈസേഷനുകളിലെ സമപ്രായക്കാർക്ക് പരസ്പരം അറിയാമെന്ന് ഉറപ്പാക്കാൻ ഗോസിപ്പ് ഉപയോഗിക്കുന്നു.
 
-When a configuration block that contains an update to the anchor peers is committed,
-peers reach out to the anchor peers and learn from them about all of the peers known
-to the anchor peer(s). Once at least one peer from each organization has contacted an
-anchor peer, the anchor peer learns about every peer in the channel. Since gossip
-communication is constant, and because peers always ask to be told about the existence
-of any peer they don't know about, a common view of membership can be established for
-a channel.
+ആങ്കർ സമപ്രായക്കാർക്ക് ഒരു അപ്‌ഡേറ്റ് അടങ്ങിയിരിക്കുന്ന ഒരു കോൺഫിഗറേഷൻ ബ്ലോക്ക് പ്രതിജ്ഞാബദ്ധമാകുമ്പോൾ,
+സമപ്രായക്കാർ ആങ്കർ സമപ്രായക്കാരുമായി ബന്ധപ്പെടുകയും അവരിൽ നിന്ന് അറിയപ്പെടുന്ന എല്ലാ സമപ്രായക്കാരെയും കുറിച്ച് അറിയുകയും ചെയ്യുന്നു
+ആങ്കർ പിയർ (കൾ) ലേക്ക്. ഓരോ ഓർ‌ഗനൈസേഷനിൽ‌ നിന്നും ഒരു പിയർ‌ എങ്കിലും ഒരു വ്യക്തിയെ ബന്ധപ്പെട്ടു
+ആങ്കർ പിയർ, ചാനലിലെ എല്ലാ പിയറുകളെക്കുറിച്ചും ആങ്കർ പിയർ മനസ്സിലാക്കുന്നു. ഗോസിപ്പ് മുതൽ
+ആശയവിനിമയം സ്ഥിരമാണ്, കാരണം സമപ്രായക്കാർ എല്ലായ്പ്പോഴും അസ്തിത്വത്തെക്കുറിച്ച് പറയാൻ ആവശ്യപ്പെടുന്നു
+അവർക്ക് അറിയാത്ത ഏതൊരു സമപ്രായക്കാരിലും, അംഗത്വത്തെക്കുറിച്ചുള്ള പൊതുവായ കാഴ്ചപ്പാട് സ്ഥാപിക്കാൻ കഴിയും
+ഒരു ചാനൽ.
 
-For example, let's assume we have three organizations --- ``A``, ``B``, ``C`` --- in the channel
-and a single anchor peer --- ``peer0.orgC`` --- defined for organization ``C``.
-When ``peer1.orgA`` (from organization ``A``) contacts ``peer0.orgC``, it will
-tell ``peer0.orgC`` about ``peer0.orgA``. And when at a later time ``peer1.orgB``
-contacts ``peer0.orgC``, the latter would tell the former about ``peer0.orgB``.
-From that point forward, organizations ``A`` and ``B`` would start exchanging
-membership information directly without any assistance from ``peer0.orgC``.
+ഉദാഹരണത്തിന്, ഞങ്ങൾക്ക് മൂന്ന് ഓർഗനൈസേഷനുകൾ ഉണ്ടെന്ന് കരുതുക --- `` A``, `` B``, `` C`` --- ചാനലിൽ
+ഒരൊറ്റ ആങ്കർ പിയർ --- `` peer0.orgC`` --- ഓർഗനൈസേഷനായി നിർവചിച്ചിരിക്കുന്നത് `` സി``.
+`` Peer1.orgA`` (ഓർഗനൈസേഷനിൽ നിന്ന് `` A``) `` peer0.orgC`` യുമായി ബന്ധപ്പെടുമ്പോൾ,
+`` peer0.orgA`` നെക്കുറിച്ച് `` peer0.orgC`` യോട് പറയുക. പിന്നീടുള്ള സമയത്ത് `` peer1.orgB``
+`` peer0.orgC`` കോൺ‌ടാക്റ്റുകൾ‌, രണ്ടാമത്തേത് `` peer0.orgB`` നെക്കുറിച്ച് മുൻ‌മാരോട് പറയും.
+ആ സമയം മുതൽ, `` A``, `` B`` എന്നീ സംഘടനകൾ കൈമാറ്റം ചെയ്യാൻ തുടങ്ങും
+`` peer0.orgC`` യുടെ സഹായമില്ലാതെ അംഗത്വ വിവരങ്ങൾ നേരിട്ട്.
 
-As communication across organizations depends on gossip in order to work, there must
-be at least one anchor peer defined in the channel configuration. It is strongly
-recommended that every organization provides its own set of anchor peers for high
-availability and redundancy.
+ഓർഗനൈസേഷനുകളിലുടനീളമുള്ള ആശയവിനിമയം പ്രവർത്തിക്കുന്നതിന് ഗോസിപ്പിനെ ആശ്രയിച്ചിരിക്കുന്നു, അതിനാൽ ഉണ്ടായിരിക്കണം
+ചാനൽ കോൺഫിഗറേഷനിൽ നിർവചിച്ചിരിക്കുന്ന ഒരു ആങ്കർ പിയറെങ്കിലും ആയിരിക്കുക. അത് ശക്തമാണ്
+ഓരോ ഓർഗനൈസേഷനും ഉയർന്ന നിലവാരത്തിനായി ആങ്കർ സമപ്രായക്കാരുടെ ഒരു കൂട്ടം നൽകണമെന്ന് ശുപാർശ ചെയ്യുന്നു
+ലഭ്യതയും ആവർത്തനവും.
 
-.. _glossary_ACL:
+.. _ ഗ്ലോസറി_എസി‌എൽ:
 
 ACL
 ---
 
-An ACL, or Access Control List, associates access to specific peer
-resources (such as system chaincode APIs or event services) to a Policy_
-(which specifies how many and what types of organizations or roles are
-required). The ACL is part of a channel's configuration. It is therefore
-persisted in the channel's configuration blocks, and can be updated using the
-standard configuration update mechanism.
+നിർദ്ദിഷ്ട പിയറിലേക്കുള്ള ആക്‌സസ്സിനെ ഒരു എസിഎൽ അല്ലെങ്കിൽ ആക്‌സസ്സ് നിയന്ത്രണ ലിസ്റ്റ് ബന്ധപ്പെടുത്തുന്നു
+ഒരു പോളിസി_യിലേക്കുള്ള ഉറവിടങ്ങൾ (സിസ്റ്റം ചെയിൻകോഡ് API- കൾ അല്ലെങ്കിൽ ഇവന്റ് സേവനങ്ങൾ പോലുള്ളവ)
+(ഇത് എത്ര, ഏത് തരം ഓർഗനൈസേഷനുകൾ അല്ലെങ്കിൽ റോളുകൾ എന്ന് വ്യക്തമാക്കുന്നു
+ആവശ്യമാണ്). ഒരു ചാനലിന്റെ കോൺഫിഗറേഷന്റെ ഭാഗമാണ് ACL. അതിനാൽ തന്നെ
+ചാനലിന്റെ കോൺഫിഗറേഷൻ ബ്ലോക്കുകളിൽ നിലനിൽക്കുന്നു, ഒപ്പം ഇത് ഉപയോഗിച്ച് അപ്‌ഡേറ്റ് ചെയ്യാനും കഴിയും
+സ്റ്റാൻഡേർഡ് കോൺഫിഗറേഷൻ അപ്‌ഡേറ്റ് സംവിധാനം.
 
-An ACL is formatted as a list of key-value pairs, where the key identifies
-the resource whose access we wish to control, and the value identifies the
-channel policy (group) that is allowed to access it. For example
-``lscc/GetDeploymentSpec: /Channel/Application/Readers``
-defines that the access to the life cycle chaincode ``GetDeploymentSpec`` API
-(the resource) is accessible by identities which satisfy the
-``/Channel/Application/Readers`` policy.
+കീ തിരിച്ചറിയുന്ന കീ-മൂല്യ ജോഡികളുടെ പട്ടികയായി ഒരു ACL ഫോർമാറ്റുചെയ്‌തു
+ആരുടെ ആക്സസ് ഞങ്ങൾ നിയന്ത്രിക്കാൻ ആഗ്രഹിക്കുന്നു, മൂല്യം തിരിച്ചറിയുന്നു
+ചാനൽ നയം (ഗ്രൂപ്പ്) ആക്‌സസ് ചെയ്യാൻ അനുവദിച്ചിരിക്കുന്നു. ഉദാഹരണത്തിന്
+`` lscc / GetDeploymentSpec: / ചാനൽ / അപ്ലിക്കേഷൻ / വായനക്കാർ``
+ലൈഫ് സൈക്കിൾ ചെയിൻ‌കോഡിലേക്കുള്ള ആക്‌സസ് `` GetDeploymentSpec`` API എന്ന് നിർവചിക്കുന്നു
+(റിസോഴ്സ്) ഐഡന്റിറ്റികൾ വഴി ആക്സസ് ചെയ്യാൻ കഴിയും
+`` / ചാനൽ / അപ്ലിക്കേഷൻ / വായനക്കാരുടെ` നയം.
 
-A set of default ACLs is provided in the ``configtx.yaml`` file which is
-used by configtxgen to build channel configurations. The defaults can be set
-in the top level "Application" section of ``configtx.yaml`` or overridden
-on a per profile basis in the "Profiles" section.
+`` Configtx.yaml`` ഫയലിൽ ഒരു കൂട്ടം സ്ഥിരസ്ഥിതി ACL- കൾ നൽകിയിട്ടുണ്ട്
+ചാനൽ കോൺഫിഗറേഷനുകൾ നിർമ്മിക്കുന്നതിന് configtxgen ഉപയോഗിക്കുന്നു. സ്ഥിരസ്ഥിതികൾ സജ്ജമാക്കാൻ കഴിയും
+`` configtx.yaml`` ന്റെ ഉയർന്ന തലത്തിലുള്ള "ആപ്ലിക്കേഷൻ" വിഭാഗത്തിൽ അല്ലെങ്കിൽ അസാധുവാക്കി
+"പ്രൊഫൈലുകൾ" വിഭാഗത്തിലെ ഓരോ പ്രൊഫൈൽ അടിസ്ഥാനത്തിലും.
 
-.. _Block:
+.. _ തടയുക:
 
-Block
+തടയുക
 -----
 
-.. figure:: ./glossary/glossary.block.png
-   :scale: 50 %
-   :align: right
-   :figwidth: 40 %
-   :alt: A Block
+.. ചിത്രം :: ./glossary/glossary.block.png
+ : സ്കെയിൽ: 50%
+ : വിന്യസിക്കുക: ശരി
+ : അത്തിപ്പഴം: 40%
+ : alt: ഒരു ബ്ലോക്ക്
 
-   Block B1 is linked to block B0. Block B2 is linked to block B1.
+ബ്ലോക്ക് ബി 1 ബ്ലോക്കുമായി ബന്ധിപ്പിച്ചിരിക്കുന്നു. ബ്ലോക്ക് ബി 2 ബ്ലോക്ക് ബി 1 ലേക്ക് ബന്ധിപ്പിച്ചിരിക്കുന്നു.
 
 =======
 
-A block contains an ordered set of transactions. It is cryptographically linked
-to the preceding block, and in turn it is linked to be subsequent blocks. The
-first block in such a chain of blocks is called the **genesis block**. Blocks
-are created by the ordering service, and then validated and committed by peers.
+ഒരു ബ്ലോക്കിൽ ഒരു ഓർഡർ ഇടപാടുകൾ അടങ്ങിയിരിക്കുന്നു. ഇത് ക്രിപ്റ്റോഗ്രാഫിക്കായി ബന്ധിപ്പിച്ചിരിക്കുന്നു
+മുമ്പത്തെ ബ്ലോക്കിലേക്ക്, തുടർന്നുള്ള ബ്ലോക്കുകളുമായി ഇത് ബന്ധിപ്പിച്ചിരിക്കുന്നു. ദി
+അത്തരം ബ്ലോക്കുകളുടെ ഒരു ശൃംഖലയിലെ ആദ്യത്തെ ബ്ലോക്കിനെ ** ജെനിസിസ് ബ്ലോക്ക് ** എന്ന് വിളിക്കുന്നു. ബ്ലോക്കുകൾ
+ഓർ‌ഡറിംഗ് സേവനത്താൽ‌ സൃഷ്‌ടിച്ചതാണ്, തുടർന്ന്‌ അവരെ സമപ്രായക്കാർ‌ സാധൂകരിക്കുകയും പ്രതിജ്ഞാബദ്ധമാക്കുകയും ചെയ്യുന്നു.
 
 
-.. _Chain:
+.. _ചങ്ങല:
 
 
-Chain
+ചങ്ങല
 -----
 
-.. figure:: ./glossary/glossary.blockchain.png
-   :scale: 75 %
-   :align: right
-   :figwidth: 40 %
-   :alt: Blockchain
+.. ചിത്രം :: ./glossary/glossary.blockchain.png
+ : സ്കെയിൽ: 75%
+ : വിന്യസിക്കുക: ശരി
+ : അത്തിപ്പഴം: 40%
+ : alt: ബ്ലോക്ക്‌ചെയിൻ
 
-   Blockchain B contains blocks 0, 1, 2.
+ ബ്ലോക്ക്ചെയിൻ ബിയിൽ 0, 1, 2 ബ്ലോക്കുകൾ അടങ്ങിയിരിക്കുന്നു.
 
 =======
 
-The ledger's chain is a transaction log structured as hash-linked blocks of
-transactions. Peers receive blocks of transactions from the ordering service, mark
-the block's transactions as valid or invalid based on endorsement policies and
-concurrency violations, and append the block to the hash chain on the peer's
-file system.
+ലെ ഹാജ്-ലിങ്ക്ഡ് ബ്ലോക്കുകളായി ക്രമീകരിച്ചിരിക്കുന്ന ഒരു ഇടപാട് ലോഗാണ് ലെഡ്ജറിന്റെ ചെയിൻ
+ഇടപാടുകൾ. ഓർഡർ ചെയ്യുന്ന സേവനത്തിൽ നിന്ന് സമപ്രായക്കാർക്ക് ഇടപാടുകളുടെ ബ്ലോക്കുകൾ ലഭിക്കുന്നു, അടയാളപ്പെടുത്തുക
+അംഗീകാര നയങ്ങളെ അടിസ്ഥാനമാക്കി ബ്ലോക്കിന്റെ ഇടപാടുകൾ സാധുവായതോ അസാധുവായതോ ആണ്
+സമന്വയ ലംഘനങ്ങൾ, ഒപ്പം സമപ്രായക്കാരുടെ ഹാഷ് ചെയിനിലേക്ക് ബ്ലോക്ക് കൂട്ടിച്ചേർക്കുക
+ഫയൽ സിസ്റ്റം.
 
-.. _chaincode:
+.. _ചെയിൻ‌കോഡ്:
 
-Chaincode
+ചെയിൻകോഡ്
 ---------
 
-See Smart-Contract_.
+സ്മാർട്ട്-കരാർ_ കാണുക.
 
-.. _Channel:
+.. _ചാനൽ:
 
-Channel
+ചാനൽ
 -------
 
-.. figure:: ./glossary/glossary.channel.png
-   :scale: 30 %
-   :align: right
-   :figwidth: 40 %
-   :alt: A Channel
+.. ചിത്രം :: ./glossary/glossary.channel.png
+ : സ്കെയിൽ: 30%
+ : വിന്യസിക്കുക: ശരി
+ : അത്തിപ്പഴം: 40%
+ : alt: ഒരു ചാനൽ
 
-   Channel C connects application A1, peer P2 and ordering service O1.
+ ചാനൽ സി ആപ്ലിക്കേഷൻ എ 1, പിയർ പി 2, ഓർഡറിംഗ് സേവനം ഒ 1 എന്നിവയുമായി ബന്ധിപ്പിക്കുന്നു.
 
 =======
 
-A channel is a private blockchain overlay which allows for data
-isolation and confidentiality. A channel-specific ledger is shared across the
-peers in the channel, and transacting parties must be authenticated to
-a channel in order to interact with it.  Channels are defined by a
-Configuration-Block_.
+ഡാറ്റ അനുവദിക്കുന്ന ഒരു സ്വകാര്യ ബ്ലോക്ക്ചെയിൻ ഓവർലേയാണ് ചാനൽ
+ഒറ്റപ്പെടലും രഹസ്യസ്വഭാവവും. ഒരു ചാനൽ നിർദ്ദിഷ്ട ലെഡ്ജർ ഉടനീളം പങ്കിടുന്നു
+ചാനലിലെ സമപ്രായക്കാർ, ഇടപാട് നടത്തുന്ന കക്ഷികൾ എന്നിവ പ്രാമാണീകരിക്കേണ്ടതുണ്ട്
+ഒരു ചാനലുമായി സംവദിക്കുന്നതിന്. ചാനലുകൾ നിർവചിച്ചിരിക്കുന്നത് a
+കോൺഫിഗറേഷൻ-ബ്ലോക്ക്_.
 
 
-.. _Commit:
+.. _കമ്മിറ്റ്:
 
-Commit
+പ്രതിബദ്ധത
 ------
 
-Each Peer_ on a channel validates ordered blocks of
-transactions and then commits (writes/appends) the blocks to its replica of the
-channel Ledger_. Peers also mark each transaction in each block
-as valid or invalid.
+ഒരു ചാനലിലെ ഓരോ പിയർ_യും ഓർഡർ ചെയ്ത ബ്ലോക്കുകളെ സാധൂകരിക്കുന്നു
+ഇടപാടുകൾ നടത്തുകയും അതിന്റെ തനിപ്പകർപ്പിലേക്ക് ബ്ലോക്കുകൾ സമർപ്പിക്കുകയും ചെയ്യുന്നു (എഴുതുന്നു / കൂട്ടിച്ചേർക്കുന്നു)
+ചാനൽ ലെഡ്‌ജർ_. ഓരോ ബ്ലോക്കിലും ഓരോ ഇടപാടുകളും സമപ്രായക്കാർ അടയാളപ്പെടുത്തുന്നു
+സാധുവായതോ അസാധുവായതോ ആയി.
 
 .. _Concurrency-Control-Version-Check:
 
-Concurrency Control Version Check
+ഏകീകൃത നിയന്ത്രണ പതിപ്പ് പരിശോധന
 ---------------------------------
 
-Concurrency Control Version Check is a method of keeping ledger state in sync across
-peers on a channel. Peers execute transactions in parallel, and before committing
-to the ledger, peers check whether the state read at the time the transaction was executed
-has been modified. If the data read for the transaction has changed between execution time and
-commit time, then a Concurrency Control Version Check violation has
-occurred, and the transaction is marked as invalid on the ledger and values
-are not updated in the state database.
+ലെഡ്ജർ നില ഉടനീളം സമന്വയിപ്പിക്കുന്നതിനുള്ള ഒരു രീതിയാണ് കൺകറൻസി കൺട്രോൾ പതിപ്പ് പരിശോധന
+ഒരു ചാനലിലെ സമപ്രായക്കാർ. സമപ്രായക്കാർ സമാന്തരമായും പ്രതിജ്ഞാബദ്ധമായും ഇടപാടുകൾ നടത്തുന്നു
+ലെഡ്ജറിലേക്ക്, ഇടപാട് നടക്കുമ്പോൾ സംസ്ഥാനം വായിച്ചിട്ടുണ്ടോ എന്ന് സമപ്രായക്കാർ പരിശോധിക്കുന്നു
+പരിഷ്‌ക്കരിച്ചു. ഇടപാടിനായി വായിച്ച ഡാറ്റ എക്സിക്യൂഷൻ സമയത്തിനും
+സമയം ചെലവഴിക്കുക, തുടർന്ന് ഒരു കൺകറൻസി നിയന്ത്രണ പതിപ്പ് പരിശോധന ലംഘനമുണ്ട്
+സംഭവിച്ചു, ഇടപാട് ലെഡ്ജറിലും മൂല്യങ്ങളിലും അസാധുവായി അടയാളപ്പെടുത്തി
+സംസ്ഥാന ഡാറ്റാബേസിൽ അപ്‌ഡേറ്റ് ചെയ്തിട്ടില്ല.
 
-.. _Configuration-Block:
+.. _ കോൺഫിഗറേഷൻ-ബ്ലോക്ക്:
 
-Configuration Block
+കോൺഫിഗറേഷൻ ബ്ലോക്ക്
 -------------------
 
-Contains the configuration data defining members and policies for a system
-chain (ordering service) or channel. Any configuration modifications to a
-channel or overall network (e.g. a member leaving or joining) will result
-in a new configuration block being appended to the appropriate chain. This
-block will contain the contents of the genesis block, plus the delta.
+ഒരു സിസ്റ്റത്തിനായുള്ള അംഗങ്ങളെയും നയങ്ങളെയും നിർവചിക്കുന്ന കോൺഫിഗറേഷൻ ഡാറ്റ അടങ്ങിയിരിക്കുന്നു
+ചെയിൻ (ഓർഡർ ചെയ്യുന്ന സേവനം) അല്ലെങ്കിൽ ചാനൽ. ഒരു കോൺഫിഗറേഷൻ പരിഷ്‌ക്കരണങ്ങൾ a
+ചാനൽ അല്ലെങ്കിൽ മൊത്തത്തിലുള്ള നെറ്റ്‌വർക്ക് (ഉദാ. ഒരു അംഗം വിടുകയോ ചേരുകയോ) ഫലം ചെയ്യും
+ഒരു പുതിയ കോൺഫിഗറേഷൻ ബ്ലോക്കിൽ ഉചിതമായ ശൃംഖലയിൽ ചേർക്കുന്നു. ഈ
+ബ്ലോക്കിൽ ജെനിസിസ് ബ്ലോക്കിന്റെ ഉള്ളടക്കവും ഡെൽറ്റയും അടങ്ങിയിരിക്കും.
 
-.. _Consensus:
+.. _ സമവായം:
 
-Consensus
+സമവായം
 ---------
 
-A broader term overarching the entire transactional flow, which serves to generate
-an agreement on the order and to confirm the correctness of the set of transactions
-constituting a block.
+ഇടപാടിന്റെ ഒഴുക്കിനെ മറികടക്കുന്ന വിശാലമായ പദം, അത് സൃഷ്ടിക്കാൻ സഹായിക്കുന്നു
+ഓർഡറിനെക്കുറിച്ചുള്ള ഒരു കരാറും ഇടപാടുകളുടെ ഗണത്തിന്റെ കൃത്യത സ്ഥിരീകരിക്കുന്നതിനും
+ഒരു ബ്ലോക്ക് രൂപീകരിക്കുന്നു.
 
-.. _Consenter-Set:
+.. _കൺസെന്റർ-സെറ്റ്:
 
-Consenter set
+സമ്മതപത്രം സജ്ജമാക്കി
 -------------
 
-In a Raft ordering service, these are the ordering nodes actively participating
-in the consensus mechanism on a channel. If other ordering nodes exist on the
-system channel, but are not a part of a channel, they are not part of that
-channel's consenter set.
+റാഫ്റ്റ് ഓർ‌ഡറിംഗ് സേവനത്തിൽ‌, സജീവമായി പങ്കെടുക്കുന്ന ഓർ‌ഡറിംഗ് നോഡുകളാണ് ഇവ
+ഒരു ചാനലിലെ സമവായ സംവിധാനത്തിൽ. മറ്റ് ഓർ‌ഡറിംഗ് നോഡുകൾ‌ നിലവിലുണ്ടെങ്കിൽ‌
+സിസ്റ്റം ചാനൽ, പക്ഷേ ഒരു ചാനലിന്റെ ഭാഗമല്ല, അവ അതിന്റെ ഭാഗമല്ല
+ചാനലിന്റെ സമ്മത സെറ്റ്.
 
-.. _Consortium:
+.. _ കൺസോർഷ്യം:
 
-Consortium
+കൺസോർഷ്യം
 ----------
 
-A consortium is a collection of non-orderer organizations on the blockchain
-network. These are the organizations that form and join channels and that own
-peers. While a blockchain network can have multiple consortia, most blockchain
-networks have a single consortium. At channel creation time, all organizations
-added to the channel must be part of a consortium. However, an organization
-that is not defined in a consortium may be added to an existing channel.
+ബ്ലോക്ക്ചെയിനിലെ ഓർഡർ ചെയ്യാത്ത സംഘടനകളുടെ ഒരു ശേഖരമാണ് കൺസോർഷ്യം
+നെറ്റ്‌വർക്ക്. ചാനലുകൾ രൂപീകരിക്കുകയും അതിൽ ചേരുകയും ചെയ്യുന്ന സ്ഥാപനങ്ങളാണിവ
+സമപ്രായക്കാർ. ഒരു ബ്ലോക്ക്‌ചെയിൻ നെറ്റ്‌വർക്കിന് ഒന്നിലധികം കൺസോർഷ്യ ഉണ്ടാകുമെങ്കിലും, മിക്ക ബ്ലോക്ക്‌ചെയിനും
+നെറ്റ്‌വർക്കുകൾക്ക് ഒരൊറ്റ കൺസോർഷ്യം ഉണ്ട്. ചാനൽ സൃഷ്ടിക്കുന്ന സമയത്ത്, എല്ലാ ഓർഗനൈസേഷനുകളും
+ചാനലിലേക്ക് ചേർത്തത് ഒരു കൺസോർഷ്യത്തിന്റെ ഭാഗമായിരിക്കണം. എന്നിരുന്നാലും, ഒരു ഓർഗനൈസേഷൻ
+അത് ഒരു കൺസോർഷ്യത്തിൽ നിർവചിച്ചിട്ടില്ല നിലവിലുള്ള ചാനലിലേക്ക് ചേർക്കാം.
 
-.. _Chaincode-definition:
+.. _ചെയിൻ‌കോഡ്-നിർ‌വ്വചനം:
 
-Chaincode definition
+ചെയിൻകോഡ് നിർവചനം
 --------------------
 
-A chaincode definition is used by organizations to agree on the parameters of a
-chaincode before it can be used on a channel. Each channel member that wants to
-use the chaincode to endorse transactions or query the ledger needs to approve
-a chaincode definition for their organization. Once enough channel members have
-approved a chaincode definition to meet the Lifecycle Endorsement policy (which
-is set to a majority of organizations in the channel by default), the chaincode
-definition can be committed to the channel. After the definition is committed,
-the first invoke of the chaincode (or, if requested, the execution of the Init
-function) will start the chaincode on the channel.
+A ന്റെ പാരാമീറ്ററുകൾ‌ അംഗീകരിക്കുന്നതിന് ഓർ‌ഗനൈസേഷനുകൾ‌ ഒരു ചെയിൻ‌കോഡ് നിർ‌വ്വചനം ഉപയോഗിക്കുന്നു
+ഒരു ചാനലിൽ ഉപയോഗിക്കുന്നതിന് മുമ്പ് ചെയിൻകോഡ്. ആഗ്രഹിക്കുന്ന ഓരോ ചാനൽ അംഗവും
+ഇടപാടുകൾ അംഗീകരിക്കുന്നതിനോ ലെഡ്ജർ അംഗീകരിക്കേണ്ട ചോദ്യം ചോദിക്കുന്നതിനോ ചെയിൻകോഡ് ഉപയോഗിക്കുക
+അവരുടെ ഓർഗനൈസേഷന്റെ ഒരു ചെയിൻകോഡ് നിർവചനം. മതിയായ ചാനൽ അംഗങ്ങൾ ലഭിച്ചുകഴിഞ്ഞാൽ
+ലൈഫ് സൈക്കിൾ എൻ‌ഡോഴ്സ്മെൻറ് നയം (ഏത്
+സ്ഥിരസ്ഥിതിയായി ചാനലിലെ ഭൂരിഭാഗം ഓർ‌ഗനൈസേഷനുകളിലേക്കും സജ്ജമാക്കിയിരിക്കുന്നു), ചെയിൻ‌കോഡ്
+നിർവചനം ചാനലിനോട് പ്രതിജ്ഞാബദ്ധമാണ്. നിർവചനം പൂർത്തിയാക്കിയ ശേഷം,
+ചെയിൻ‌കോഡിന്റെ ആദ്യ ഇൻ‌വോക്ക് (അല്ലെങ്കിൽ, ആവശ്യപ്പെട്ടാൽ, ഇനിറ്റിന്റെ നിർവ്വഹണം
+പ്രവർത്തനം) ചാനലിൽ ചെയിൻകോഡ് ആരംഭിക്കും.
 
-.. _Dynamic-Membership:
+.. _ഡൈനാമിക്-അംഗത്വം:
 
-Dynamic Membership
+ഡൈനാമിക് അംഗത്വം
 ------------------
 
-Hyperledger Fabric supports the addition/removal of members, peers, and ordering service
-nodes, without compromising the operationality of the overall network. Dynamic
-membership is critical when business relationships adjust and entities need to
-be added/removed for various reasons.
+അംഗങ്ങൾ‌, സമപ്രായക്കാർ‌, ഓർ‌ഡറിംഗ് സേവനം എന്നിവ ചേർ‌ക്കുന്നതിനും നീക്കംചെയ്യുന്നതിനും ഹൈപ്പർ‌ലെഡ്ജർ‌ ഫാബ്രിക് പിന്തുണയ്‌ക്കുന്നു
+മൊത്തത്തിലുള്ള നെറ്റ്‌വർക്കിന്റെ പ്രവർത്തനത്തിൽ വിട്ടുവീഴ്ച ചെയ്യാതെ നോഡുകൾ. ഡൈനാമിക്
+ബിസിനസ്സ് ബന്ധങ്ങൾ ക്രമീകരിക്കുകയും എന്റിറ്റികൾ ആവശ്യമായി വരുമ്പോഴും അംഗത്വം നിർണ്ണായകമാണ്
+വിവിധ കാരണങ്ങളാൽ ചേർക്കാം / നീക്കംചെയ്യാം.
 
-.. _Endorsement:
+.. _എൻഡോഴ്സ്മെന്റ്:
 
-Endorsement
+അംഗീകാരം
 -----------
 
-Refers to the process where specific peer nodes execute a chaincode transaction and return
-a proposal response to the client application. The proposal response includes the
-chaincode execution response message, results (read set and write set), and events,
-as well as a signature to serve as proof of the peer's chaincode execution.
-Chaincode applications have corresponding endorsement policies, in which the endorsing
-peers are specified.
+നിർദ്ദിഷ്ട പിയർ നോഡുകൾ ഒരു ചെയിൻ‌കോഡ് ഇടപാട് നടത്തി മടങ്ങിവരുന്ന പ്രക്രിയയെ സൂചിപ്പിക്കുന്നു
+ക്ലയന്റ് അപ്ലിക്കേഷനുള്ള ഒരു നിർദ്ദേശ പ്രതികരണം. നിർദ്ദേശ പ്രതികരണത്തിൽ ഉൾപ്പെടുന്നു
+ചെയിൻ‌കോഡ് എക്സിക്യൂഷൻ പ്രതികരണ സന്ദേശം, ഫലങ്ങൾ (സെറ്റ്, റൈറ്റ് സെറ്റ് വായിക്കുക), ഇവന്റുകൾ,
+ഒപ്പം പിയറിന്റെ ചെയിൻകോഡ് എക്സിക്യൂഷന്റെ തെളിവായി പ്രവർത്തിക്കാനുള്ള ഒപ്പും.
+ചെയിൻ‌കോഡ് അപ്ലിക്കേഷനുകൾ‌ക്ക് അനുബന്ധമായ അംഗീകാര നയങ്ങളുണ്ട്, അതിൽ‌ അംഗീകാരമുണ്ട്
+സമപ്രായക്കാരെ വ്യക്തമാക്കുന്നു.
 
-.. _Endorsement-policy:
+.. _എൻഡോഴ്സ്മെന്റ്-നയം:
 
-Endorsement policy
+അംഗീകാര നയം
 ------------------
 
-Defines the peer nodes on a channel that must execute transactions attached to a
-specific chaincode application, and the required combination of responses (endorsements).
-A policy could require that a transaction be endorsed by a minimum number of
-endorsing peers, a minimum percentage of endorsing peers, or by all endorsing
-peers that are assigned to a specific chaincode application. Policies can be
-curated based on the application and the desired level of resilience against
-misbehavior (deliberate or not) by the endorsing peers. A transaction that is submitted
-must satisfy the endorsement policy before being marked as valid by committing peers.
+A- ലേക്ക് അറ്റാച്ചുചെയ്ത ഇടപാടുകൾ നിർവ്വഹിക്കേണ്ട ഒരു ചാനലിലെ പിയർ നോഡുകൾ നിർവചിക്കുന്നു
+നിർദ്ദിഷ്ട ചെയിൻ‌കോഡ് ആപ്ലിക്കേഷൻ, ആവശ്യമായ പ്രതികരണങ്ങളുടെ സംയോജനം (അംഗീകാരങ്ങൾ).
+ഒരു നയത്തിന് ഒരു ഇടപാട് മിനിമം എണ്ണം അംഗീകരിക്കണമെന്ന് ആവശ്യപ്പെടാം
+സമപ്രായക്കാരെ അംഗീകരിക്കുക, സമപ്രായക്കാരെ അംഗീകരിക്കുന്നതിന്റെ ഏറ്റവും കുറഞ്ഞ ശതമാനം അല്ലെങ്കിൽ എല്ലാ അംഗീകാരങ്ങളും
+ഒരു നിർദ്ദിഷ്ട ചെയിൻ‌കോഡ് അപ്ലിക്കേഷനിലേക്ക് നിയുക്തമാക്കിയിരിക്കുന്ന സമപ്രായക്കാർ. നയങ്ങൾ ആകാം
+ആപ്ലിക്കേഷനെ അടിസ്ഥാനമാക്കി ക്യൂറേറ്റുചെയ്‌തു, ഒപ്പം അവയ്‌ക്കെതിരായ ആവശ്യമുള്ള നിലയും
+അംഗീകരിക്കുന്ന സഹപ്രവർത്തകരുടെ മോശം പെരുമാറ്റം (മന ib പൂർവ്വം അല്ലെങ്കിൽ അല്ല). സമർപ്പിച്ച ഒരു ഇടപാട്
+സമപ്രായക്കാർ ചെയ്യുന്നതിലൂടെ സാധുതയുള്ളതായി അടയാളപ്പെടുത്തുന്നതിന് മുമ്പ് അംഗീകാര നയം പാലിക്കണം.
 
-.. _Follower:
+.. _ പിന്തുടരുക:
 
-Follower
+അനുയായി
 --------
 
-In a leader based consensus protocol, such as Raft, these are the nodes which
-replicate log entries produced by the leader. In Raft, the followers also receive
-"heartbeat" messages from the leader. In the event that the leader stops sending
-those message for a configurable amount of time, the followers will initiate a
-leader election and one of them will be elected leader.
+റാഫ്റ്റ് പോലുള്ള ലീഡർ അധിഷ്ഠിത സമവായ പ്രോട്ടോക്കോളിൽ, ഇവയാണ് നോഡുകൾ
+നേതാവ് നിർമ്മിച്ച ലോഗ് എൻ‌ട്രികൾ‌ പകർ‌ത്തുക. റാഫ്റ്റിൽ, അനുയായികൾക്കും ലഭിക്കും
+നേതാവിന്റെ "ഹൃദയമിടിപ്പ്" സന്ദേശങ്ങൾ. നേതാവ് അയയ്‌ക്കുന്നത് നിർത്തുന്ന സാഹചര്യത്തിൽ
+ക്രമീകരിക്കാവുന്ന സമയത്തിനുള്ള ആ സന്ദേശം, അനുയായികൾ ആരംഭിക്കും a
+ലീഡർ തിരഞ്ഞെടുപ്പും അവരിൽ ഒരാളെ നേതാവായി തിരഞ്ഞെടുക്കും.
 
-.. _Genesis-Block:
+.. _ജെനിസിസ്-ബ്ലോക്ക്:
 
-Genesis Block
+ജെനസിസ് ബ്ലോക്ക്
 -------------
 
-The configuration block that initializes the ordering service, or serves as the
-first block on a chain.
+ക്രമപ്പെടുത്തൽ സേവനം സമാരംഭിക്കുന്ന കോൺഫിഗറേഷൻ ബ്ലോക്ക്, അല്ലെങ്കിൽ
+ഒരു ശൃംഖലയിലെ ആദ്യ ബ്ലോക്ക്.
 
-.. _Gossip-Protocol:
+.. _ഗോസിപ്പ്-പ്രോട്ടോക്കോൾ:
 
-Gossip Protocol
+ഗോസിപ്പ് പ്രോട്ടോക്കോൾ
 ---------------
 
-The gossip data dissemination protocol performs three functions:
-1) manages peer discovery and channel membership;
-2) disseminates ledger data across all peers on the channel;
-3) syncs ledger state across all peers on the channel.
-Refer to the :doc:`Gossip <gossip>` topic for more details.
+ഗോസിപ്പ് ഡാറ്റാ പ്രചാരണ പ്രോട്ടോക്കോൾ മൂന്ന് പ്രവർത്തനങ്ങൾ നിർവ്വഹിക്കുന്നു:
+1) പിയർ കണ്ടെത്തലും ചാനൽ അംഗത്വവും കൈകാര്യം ചെയ്യുന്നു;
+2) ചാനലിലെ എല്ലാ സമപ്രായക്കാരിലും ലെഡ്ജർ ഡാറ്റ പ്രചരിപ്പിക്കുന്നു;
+3) ചാനലിലെ എല്ലാ സമപ്രായക്കാരിലും ലെഡ്ജർ നില സമന്വയിപ്പിക്കുന്നു.
+കൂടുതൽ വിവരങ്ങൾക്ക്: doc: `ഗോസിപ്പ് <gossip>` വിഷയം കാണുക.
 
-.. _Fabric-ca:
+.. _ ഫാബ്രിക്-സി‌എ:
 
-Hyperledger Fabric CA
+ഹൈപ്പർലെഡ്ജർ ഫാബ്രിക് സി‌എ
 ---------------------
 
-Hyperledger Fabric CA is the default Certificate Authority component, which
-issues PKI-based certificates to network member organizations and their users.
-The CA issues one root certificate (rootCert) to each member and one enrollment
-certificate (ECert) to each authorized user.
+സ്ഥിരസ്ഥിതി സർ‌ട്ടിഫിക്കറ്റ് അതോറിറ്റി ഘടകമാണ് ഹൈപ്പർ‌ലെഡ്ജർ ഫാബ്രിക് സി‌എ, ഇത്
+നെറ്റ്‌വർക്ക് അംഗ ഓർഗനൈസേഷനുകൾക്കും അവരുടെ ഉപയോക്താക്കൾക്കും PKI അടിസ്ഥാനമാക്കിയുള്ള സർട്ടിഫിക്കറ്റുകൾ നൽകുന്നു.
+ഓരോ അംഗത്തിനും ഒരു റൂട്ട് സർട്ടിഫിക്കറ്റും (റൂട്ട്സെർട്ട്) ഒരു എൻറോൾമെന്റും സിഎ നൽകുന്നു
+അംഗീകൃത ഓരോ ഉപയോക്താവിനും സർട്ടിഫിക്കറ്റ് (ECert).
 
-.. _Init:
+.. _ഇനിറ്റ്:
 
-Init
+ആരംഭം
 ----
 
-A method to initialize a chaincode application. All chaincodes need to have an
-an Init function. By default, this function is never executed. However you can
-use the chaincode definition to request the execution of the Init function in
-order to initialize the chaincode.
+ഒരു ചെയിൻ‌കോഡ് അപ്ലിക്കേഷൻ സമാരംഭിക്കുന്നതിനുള്ള ഒരു രീതി. എല്ലാ ചെയിൻ‌കോഡുകൾ‌ക്കും ഒരു ഉണ്ടായിരിക്കണം
+ഒരു പ്രാരംഭ പ്രവർത്തനം. സ്ഥിരസ്ഥിതിയായി, ഈ പ്രവർത്തനം ഒരിക്കലും നടപ്പിലാക്കില്ല. എന്നിരുന്നാലും നിങ്ങൾക്ക് കഴിയും
+ലെ പ്രാരംഭ പ്രവർത്തനം നടപ്പിലാക്കാൻ അഭ്യർത്ഥിക്കുന്നതിന് ചെയിൻകോഡ് നിർവചനം ഉപയോഗിക്കുക
+ചെയിൻ‌കോഡ് സമാരംഭിക്കുന്നതിന്.
 
-Install
+ഇൻസ്റ്റാൾ ചെയ്യുക
 -------
 
-The process of placing a chaincode on a peer's file system.
+ഒരു പിയറിന്റെ ഫയൽ സിസ്റ്റത്തിൽ ഒരു ചെയിൻ‌കോഡ് സ്ഥാപിക്കുന്ന പ്രക്രിയ.
 
-Instantiate
+തൽക്ഷണം
 -----------
 
-The process of starting and initializing a chaincode application on a specific
-channel. After instantiation, peers that have the chaincode installed can accept
-chaincode invocations.
+ഒരു നിർദ്ദിഷ്ടത്തിൽ ഒരു ചെയിൻ‌കോഡ് അപ്ലിക്കേഷൻ ആരംഭിക്കുന്നതിനും ആരംഭിക്കുന്നതിനുമുള്ള പ്രക്രിയ
+ചാനൽ. തൽക്ഷണത്തിനുശേഷം, ചെയിൻ‌കോഡ് ഇൻ‌സ്റ്റാൾ‌ ചെയ്‌ത സമപ്രായക്കാർ‌ക്ക് അംഗീകരിക്കാൻ‌ കഴിയും
+ചെയിൻകോഡ് ഇൻവോക്കേഷനുകൾ.
 
-**NOTE**: *This method i.e. Instantiate was used in the 1.4.x and older versions of the chaincode
-lifecycle. For the current procedure used to start a chaincode on a channel with
-the new Fabric chaincode lifecycle introduced as part of Fabric v2.0,
-see Chaincode-definition_.*
+** ശ്രദ്ധിക്കുക **: * ഈ രീതി അതായത് ചെയിൻ‌കോഡിന്റെ 1.4.x ലും പഴയ പതിപ്പുകളിലും ഇൻസ്റ്റൻ‌സിയേറ്റ് ഉപയോഗിച്ചു
+ജീവിത ചക്രം. ഒരു ചാനലിൽ ഒരു ചെയിൻ‌കോഡ് ആരംഭിക്കാൻ ഉപയോഗിക്കുന്ന നിലവിലെ നടപടിക്രമത്തിനായി
+ഫാബ്രിക് v2.0 ന്റെ ഭാഗമായി അവതരിപ്പിച്ച പുതിയ ഫാബ്രിക് ചെയിൻ‌കോഡ് ജീവിതചക്രം,
+ചെയിൻ‌കോഡ് നിർ‌വചനം _ കാണുക. *
 
-.. _Invoke:
+.. _ഇൻ‌വോക്ക്:
 
-Invoke
+അഭ്യർത്ഥിക്കുക
 ------
 
-Used to call chaincode functions. A client application invokes chaincode by
-sending a transaction proposal to a peer. The peer will execute the chaincode
-and return an endorsed proposal response to the client application. The client
-application will gather enough proposal responses to satisfy an endorsement policy,
-and will then submit the transaction results for ordering, validation, and commit.
-The client application may choose not to submit the transaction results. For example
-if the invoke only queried the ledger, the client application typically would not
-submit the read-only transaction, unless there is desire to log the read on the ledger
-for audit purpose. The invoke includes a channel identifier, the chaincode function to
-invoke, and an array of arguments.
+ചെയിൻകോഡ് ഫംഗ്ഷനുകൾ വിളിക്കാൻ ഉപയോഗിക്കുന്നു. ഒരു ക്ലയന്റ് ആപ്ലിക്കേഷൻ ചെയിൻകോഡ് അഭ്യർത്ഥിക്കുന്നു
+ഒരു പിയർക്ക് ഒരു ഇടപാട് നിർദ്ദേശം അയയ്ക്കുന്നു. പിയർ ചെയിൻ‌കോഡ് നിർവ്വഹിക്കും
+ക്ലയന്റ് അപ്ലിക്കേഷന് അംഗീകൃത നിർദ്ദേശ പ്രതികരണം നൽകുക. ക്ലയന്റ്
+ഒരു അംഗീകാര നയം തൃപ്‌തിപ്പെടുത്തുന്നതിന് അപ്ലിക്കേഷൻ മതിയായ നിർദ്ദേശ പ്രതികരണങ്ങൾ ശേഖരിക്കും,
+തുടർന്ന് ഓർഡറിംഗ്, മൂല്യനിർണ്ണയം, പ്രതിജ്ഞാബദ്ധത എന്നിവയ്ക്കായി ഇടപാട് ഫലങ്ങൾ സമർപ്പിക്കും.
+ഇടപാട് ഫലങ്ങൾ സമർപ്പിക്കരുതെന്ന് ക്ലയന്റ് ആപ്ലിക്കേഷൻ തീരുമാനിച്ചേക്കാം. ഉദാഹരണത്തിന്
+ഇൻവോക്ക് ലെഡ്ജറിനെ മാത്രം അന്വേഷിക്കുകയാണെങ്കിൽ, ക്ലയന്റ് ആപ്ലിക്കേഷൻ സാധാരണഗതിയിൽ ചെയ്യില്ല
+ലെഡ്ജറിൽ റീഡ് ലോഗിൻ ചെയ്യാൻ ആഗ്രഹമില്ലെങ്കിൽ വായന-മാത്രം ഇടപാട് സമർപ്പിക്കുക
+ഓഡിറ്റ് ആവശ്യത്തിനായി. ഇൻവോക്കിൽ ഒരു ചാനൽ ഐഡന്റിഫയർ ഉൾപ്പെടുന്നു, ഇതിലേക്കുള്ള ചെയിൻകോഡ് പ്രവർത്തനം
+അഭ്യർത്ഥിക്കുക, കൂടാതെ ഒരു കൂട്ടം ആർഗ്യുമെന്റുകൾ.
 
-.. _Leader
+.. _ലീഡർ
 
-Leader
+നേതാവ്
 ------
 
-In a leader based consensus protocol, like Raft, the leader is responsible for
-ingesting new log entries, replicating them to follower ordering nodes, and
-managing when an entry is considered committed. This is not a special **type**
-of orderer. It is only a role that an orderer may have at certain times, and
-then not others, as circumstances determine.
+റാഫ്റ്റ് പോലെ ഒരു ലീഡർ അധിഷ്ഠിത സമവായ പ്രോട്ടോക്കോളിൽ, നേതാവ് ഉത്തരവാദിയാണ്
+പുതിയ ലോഗ് എൻ‌ട്രികൾ‌ ഉൾ‌ക്കൊള്ളുന്നു, അവ ഫോളോവർ‌ ഓർ‌ഡറിംഗ് നോഡുകളിലേക്ക് പകർ‌ത്തുന്നു, കൂടാതെ
+ഒരു എൻ‌ട്രി പ്രതിബദ്ധതയുള്ളതായി കണക്കാക്കുമ്പോൾ മാനേജുചെയ്യുന്നു. ഇത് ഒരു പ്രത്യേക ** തരം ** അല്ല
+ഓർഡററുടെ. ചില സമയങ്ങളിൽ ഒരു ഓർഡററിന് ഉണ്ടായിരിക്കാവുന്ന ഒരു റോൾ മാത്രമാണ് ഇത്, കൂടാതെ
+സാഹചര്യങ്ങൾ നിർണ്ണയിക്കുന്നതുപോലെ മറ്റുള്ളവയല്ല.
 
-.. _Leading-Peer:
+.. _ ലീഡിംഗ്-പിയർ:
 
-Leading Peer
+ലീഡിംഗ് പിയർ
 ------------
 
-Each Organization_ can own multiple peers on each channel that
-they subscribe to. One or more of these peers should serve as the leading peer
-for the channel, in order to communicate with the network ordering service on
-behalf of the organization. The ordering service delivers blocks to the
-leading peer(s) on a channel, who then distribute them to other peers within
-the same organization.
+ഓരോ ഓർഗനൈസേഷനും_ ഓരോ ചാനലിലും ഒന്നിലധികം സമപ്രായക്കാരെ സ്വന്തമാക്കാൻ കഴിയും
+അവർ സബ്‌സ്‌ക്രൈബുചെയ്യുന്നു. ഈ സമപ്രായക്കാരിൽ ഒന്നോ അതിലധികമോ മുൻ‌നിര പിയറായി പ്രവർത്തിക്കണം
+ചാനലിനായി, നെറ്റ്‌വർക്ക് ഓർഡറിംഗ് സേവനവുമായി ആശയവിനിമയം നടത്തുന്നതിന്
+സംഘടനയ്ക്ക് വേണ്ടി. ഓർ‌ഡറിംഗ് സേവനം ബ്ലോക്കുകൾ‌ നൽ‌കുന്നു
+ഒരു ചാനലിലെ മുൻ‌നിര പിയർ‌ (കൾ‌), അവർ‌ അവരെ മറ്റ് സമപ്രായക്കാർ‌ക്ക് വിതരണം ചെയ്യുന്നു
+ഒരേ ഓർഗനൈസേഷൻ.
 
-.. _Ledger:
+.. _ ലെഡ്ജർ:
 
-Ledger
+ലെഡ്ജർ
 ------
 
-.. figure:: ./glossary/glossary.ledger.png
-   :scale: 25 %
-   :align: right
-   :figwidth: 20 %
-   :alt: A Ledger
+.. ചിത്രം :: ./glossary/glossary.ledger.png
+ : സ്കെയിൽ: 25%
+ : വിന്യസിക്കുക: ശരി
+ : അത്തിപ്പഴം: 20%
+ : alt: ഒരു ലെഡ്ജർ
 
-   A Ledger, 'L'
+ ഒരു ലെഡ്ജർ, 'എൽ'
 
 
-A ledger consists of two distinct, though related, parts -- a "blockchain" and
-the "state database", also known as "world state". Unlike other ledgers,
-blockchains are **immutable** -- that is, once a block has been added to the
-chain, it cannot be changed. In contrast, the "world state" is a database
-containing the current value of the set of key-value pairs that have been added,
-modified or deleted by the set of validated and committed transactions in the
-blockchain.
+ഒരു ലെഡ്ജറിൽ രണ്ട് വ്യത്യസ്തങ്ങളാണുള്ളത്, ബന്ധപ്പെട്ടതാണെങ്കിലും, ഭാഗങ്ങൾ - ഒരു "ബ്ലോക്ക്‌ചെയിൻ" ,.
+"സ്റ്റേറ്റ് സ്റ്റേറ്റ് ഡാറ്റാബേസ്", "വേൾഡ് സ്റ്റേറ്റ്" എന്നും അറിയപ്പെടുന്നു. മറ്റ് ലെഡ്ജറുകളിൽ നിന്ന് വ്യത്യസ്തമായി,
+ബ്ലോക്ക്ചെയിനുകൾ ** മാറ്റമില്ലാത്തവയാണ് ** - അതായത്, ഒരു ബ്ലോക്ക് ചേർത്തുകഴിഞ്ഞാൽ
+ചെയിൻ, ഇത് മാറ്റാൻ കഴിയില്ല. നേരെമറിച്ച്, "ലോക രാഷ്ട്രം" ഒരു ഡാറ്റാബേസാണ്
+ചേർത്ത കീ-മൂല്യ ജോഡികളുടെ ഗണത്തിന്റെ നിലവിലെ മൂല്യം ഉൾക്കൊള്ളുന്നു,
+ലെ സാധുതയുള്ളതും പ്രതിബദ്ധതയുള്ളതുമായ ഇടപാടുകളുടെ ഗണം പരിഷ്ക്കരിക്കുകയോ ഇല്ലാതാക്കുകയോ ചെയ്തു
+ബ്ലോക്ക്‌ചെയിൻ.
 
-It's helpful to think of there being one **logical** ledger for each channel in
-the network. In reality, each peer in a channel maintains its own copy of the
-ledger -- which is kept consistent with every other peer's copy through a
-process called **consensus**. The term **Distributed Ledger Technology**
-(**DLT**) is often associated with this kind of ledger -- one that is logically
-singular, but has many identical copies distributed across a set of network
-nodes (peers and the ordering service).
+ഓരോ ചാനലിനും ഒരു ** ലോജിക്കൽ ** ലെഡ്ജർ ഉണ്ടെന്ന് ചിന്തിക്കുന്നത് സഹായകരമാണ്
+നെറ്റ്‌വർക്ക്. വാസ്തവത്തിൽ, ഒരു ചാനലിലെ ഓരോ പിയറും അതിന്റെ സ്വന്തം പകർപ്പ് പരിപാലിക്കുന്നു
+ലെഡ്ജർ - a വഴി മറ്റെല്ലാ പിയറിന്റെയും പകർപ്പുമായി പൊരുത്തപ്പെടുന്നു
+** സമവായം ** എന്ന് വിളിക്കുന്ന പ്രക്രിയ. ** ഡിസ്ട്രിബ്യൂട്ടഡ് ലെഡ്ജർ ടെക്നോളജി **
+(** DLT **) പലപ്പോഴും ഇത്തരത്തിലുള്ള ലെഡ്ജറുമായി ബന്ധപ്പെട്ടിരിക്കുന്നു - ഇത് യുക്തിപരമായി
+ഏകവചനം, എന്നാൽ ഒരു കൂട്ടം നെറ്റ്‌വർക്കിലുടനീളം സമാനമായ നിരവധി പകർപ്പുകൾ വിതരണം ചെയ്യുന്നു
+നോഡുകൾ‌ (സമപ്രായക്കാരും ഓർ‌ഡറിംഗ് സേവനവും).
 
-.. _Log-entry
+.. _ലോഗ് എൻട്രി
 
-Log entry
+ലോഗ് എൻട്രി
 ---------
 
-The primary unit of work in a Raft ordering service, log entries are distributed
-from the leader orderer to the followers. The full sequence of such entries known
-as the "log". The log is considered to be consistent if all members agree on the
-entries and their order.
+റാഫ്റ്റ് ഓർ‌ഡറിംഗ് സേവനത്തിലെ ജോലിയുടെ പ്രാഥമിക യൂണിറ്റ്, ലോഗ് എൻ‌ട്രികൾ വിതരണം ചെയ്യുന്നു
+നേതാവ് ഓർഡർ ചെയ്യുന്നയാൾ മുതൽ അനുയായികൾ വരെ. അത്തരം എൻ‌ട്രികളുടെ പൂർണ്ണ ശ്രേണി അറിയാം
+"ലോഗ്" ആയി. എല്ലാ അംഗങ്ങളും അംഗീകരിച്ചാൽ ലോഗ് സ്ഥിരതയുള്ളതായി കണക്കാക്കുന്നു
+എൻ‌ട്രികളും അവയുടെ ക്രമവും.
 
-.. _Member:
+.. _അംഗം:
 
-Member
+അംഗം
 ------
 
-See Organization_.
+ഓർഗനൈസേഷൻ_ കാണുക.
 
-.. _MSP:
+.. _എംഎസ്പി:
 
-Membership Service Provider
+അംഗത്വ സേവന ദാതാവ്
 ---------------------------
 
-.. figure:: ./glossary/glossary.msp.png
-   :scale: 35 %
-   :align: right
-   :figwidth: 25 %
-   :alt: An MSP
+.. ചിത്രം :: ./glossary/glossary.msp.png
+ : സ്കെയിൽ: 35%
+ : വിന്യസിക്കുക: ശരി
+ : അത്തിപ്പഴം: 25%
+ : alt: ഒരു എം‌എസ്‌പി
 
-   An MSP, 'ORG.MSP'
+ ഒരു എം‌എസ്‌പി, 'ORG.MSP'
 
 
-The Membership Service Provider (MSP) refers to an abstract component of the
-system that provides credentials to clients, and peers for them to participate
-in a Hyperledger Fabric network. Clients use these credentials to authenticate
-their transactions, and peers use these credentials to authenticate transaction
-processing results (endorsements). While strongly connected to the transaction
-processing components of the systems, this interface aims to have membership
-services components defined, in such a way that alternate implementations of
-this can be smoothly plugged in without modifying the core of transaction
-processing components of the system.
+അംഗത്വ സേവന ദാതാവ് (എം‌എസ്‌പി) എന്നത് ഒരു അമൂർത്ത ഘടകത്തെ സൂചിപ്പിക്കുന്നു
+ക്ലയന്റുകൾ‌ക്ക് യോഗ്യതാപത്രങ്ങൾ‌ നൽ‌കുന്ന സിസ്റ്റവും അവർക്ക് പങ്കെടുക്കാൻ‌ സമപ്രായക്കാരും
+ഒരു ഹൈപ്പർലെഡ്ജർ ഫാബ്രിക് നെറ്റ്‌വർക്കിൽ. പ്രാമാണീകരിക്കാൻ ക്ലയന്റുകൾ ഈ യോഗ്യതാപത്രങ്ങൾ ഉപയോഗിക്കുന്നു
+അവരുടെ ഇടപാടുകൾ, ഒപ്പം സഹപാഠികൾ ഇടപാട് പ്രാമാണീകരിക്കുന്നതിന് ഈ യോഗ്യതാപത്രങ്ങൾ ഉപയോഗിക്കുന്നു
+പ്രോസസ്സിംഗ് ഫലങ്ങൾ (അംഗീകാരങ്ങൾ). ഇടപാടിലേക്ക് ശക്തമായി ബന്ധിപ്പിക്കുമ്പോൾ
+സിസ്റ്റങ്ങളുടെ പ്രോസസ്സിംഗ് ഘടകങ്ങൾ, ഈ ഇന്റർഫേസ് അംഗത്വം നേടാൻ ലക്ഷ്യമിടുന്നു
+സേവന ഘടകങ്ങൾ നിർവചിച്ചിരിക്കുന്നത്, ഇതര നടപ്പാക്കലുകൾക്ക്
+ഇടപാടിന്റെ കാതൽ പരിഷ്കരിക്കാതെ ഇത് സുഗമമായി പ്ലഗ് ഇൻ ചെയ്യാൻ കഴിയും
+സിസ്റ്റത്തിന്റെ പ്രോസസ്സിംഗ് ഘടകങ്ങൾ.
 
-.. _Membership-Services:
+.. _ അംഗത്വ-സേവനങ്ങൾ:
 
-Membership Services
+അംഗത്വ സേവനങ്ങൾ
 -------------------
 
-Membership Services authenticates, authorizes, and manages identities on a
-permissioned blockchain network. The membership services code that runs in peers
-and orderers both authenticates and authorizes blockchain operations.  It is a
-PKI-based implementation of the Membership Services Provider (MSP) abstraction.
+അംഗത്വ സേവനങ്ങൾ a- ൽ ഐഡന്റിറ്റികൾ പ്രാമാണീകരിക്കുന്നു, അംഗീകരിക്കുന്നു, കൈകാര്യം ചെയ്യുന്നു
+അനുവദനീയമായ ബ്ലോക്ക്‌ചെയിൻ നെറ്റ്‌വർക്ക്. സമപ്രായക്കാരിൽ പ്രവർത്തിക്കുന്ന അംഗത്വ സേവന കോഡ്
+ഓർഡർ ചെയ്യുന്നവർ ബ്ലോക്ക്ചെയിൻ പ്രവർത്തനങ്ങളെ പ്രാമാണീകരിക്കുകയും അംഗീകരിക്കുകയും ചെയ്യുന്നു. അത് ഒരു
+അംഗത്വ സേവന ദാതാവിന്റെ (എം‌എസ്‌പി) സംഗ്രഹത്തിന്റെ പി‌കെ‌ഐ അടിസ്ഥാനമാക്കിയുള്ള നടപ്പാക്കൽ.
 
-.. _Ordering-Service:
+.. _ ഓർ‌ഡറിംഗ്-സേവനം:
 
-Ordering Service
+ഓർഡർ ചെയ്യൽ സേവനം
 ----------------
 
-Also known as **orderer**. A defined collective of nodes that orders transactions into a block
-and then distributes blocks to connected peers for validation and commit. The ordering service
-exists independent of the peer processes and orders transactions on a first-come-first-serve basis
-for all channels on the network.  It is designed to support pluggable implementations beyond the
-out-of-the-box Kafka and Raft varieties. It is a common binding for the overall network; it
-contains the cryptographic identity material tied to each Member_.
+** ഓർഡറർ ** എന്നും അറിയപ്പെടുന്നു. ഇടപാടുകളെ ഒരു ബ്ലോക്കിലേക്ക് ക്രമീകരിക്കുന്ന നോഡുകളുടെ നിർവചിക്കപ്പെട്ട കൂട്ടായ്‌മ
+മൂല്യനിർണ്ണയത്തിനും പ്രതിജ്ഞാബദ്ധതയ്ക്കും ബന്ധിപ്പിച്ച സമപ്രായക്കാർക്ക് ബ്ലോക്കുകൾ വിതരണം ചെയ്യുന്നു. ഓർ‌ഡറിംഗ് സേവനം
+പിയർ പ്രോസസ്സുകളിൽ നിന്നും സ്വതന്ത്രമായി നിലനിൽക്കുകയും ആദ്യം വരുന്നവർക്ക് ആദ്യം നൽകൽ അടിസ്ഥാനത്തിൽ ഇടപാടുകൾ ഓർഡർ ചെയ്യുകയും ചെയ്യുന്നു
+നെറ്റ്‌വർക്കിലെ എല്ലാ ചാനലുകൾക്കും. പ്ലഗ് ചെയ്യാവുന്ന നടപ്പാക്കലുകളെ പിന്തുണയ്ക്കുന്നതിനായാണ് ഇത് രൂപകൽപ്പന ചെയ്തിരിക്കുന്നത്
+കാഫ്ക, റാഫ്റ്റ് ഇനങ്ങൾക്ക് പുറത്ത്. മൊത്തത്തിലുള്ള നെറ്റ്‌വർക്കിനുള്ള ഒരു പൊതു ബന്ധമാണ് ഇത്; അത്
+ഓരോ അംഗവുമായി ബന്ധിപ്പിച്ചിരിക്കുന്ന ക്രിപ്‌റ്റോഗ്രാഫിക് ഐഡന്റിറ്റി മെറ്റീരിയൽ അടങ്ങിയിരിക്കുന്നു.
 
-.. _Organization:
+.. _സംഘടന:
 
-Organization
+സംഘടന
 ------------
 
 =====
 
 
-.. figure:: ./glossary/glossary.organization.png
-   :scale: 25 %
-   :align: right
-   :figwidth: 20 %
-   :alt: An Organization
+.. ചിത്രം :: ./glossary/glossary.organization.png
+ : സ്കെയിൽ: 25%
+ : വിന്യസിക്കുക: ശരി
+ : അത്തിപ്പഴം: 20%
+ : alt: ഒരു ഓർഗനൈസേഷൻ
 
-   An organization, 'ORG'
+ ഒരു സംഘടന, 'ORG'
 
 
-Also known as "members", organizations are invited to join the blockchain network
-by a blockchain network provider. An organization is joined to a network by adding its
-Membership Service Provider (MSP_) to the network. The MSP defines how other members of the
-network may verify that signatures (such as those over transactions) were generated by a valid
-identity, issued by that organization. The particular access rights of identities within an MSP
-are governed by policies which are also agreed upon when the organization is joined to the
-network. An organization can be as large as a multi-national corporation or as small as an
-individual. The transaction endpoint of an organization is a Peer_. A collection of organizations
-form a Consortium_. While all of the organizations on a network are members, not every organization
-will be part of a consortium.
+"അംഗങ്ങൾ" എന്നും അറിയപ്പെടുന്ന ഓർഗനൈസേഷനുകളെ ബ്ലോക്ക്ചെയിൻ നെറ്റ്‌വർക്കിൽ ചേരാൻ ക്ഷണിക്കുന്നു
+ഒരു ബ്ലോക്ക്‌ചെയിൻ നെറ്റ്‌വർക്ക് ദാതാവ്. ഒരു ഓർ‌ഗനൈസേഷൻ‌ ചേർ‌ത്ത് ഒരു നെറ്റ്‌വർ‌ക്കിലേക്ക് ചേർ‌ക്കുന്നു
+നെറ്റ്‌വർക്കിലേക്കുള്ള അംഗത്വ സേവന ദാതാവ് (MSP_). എം‌എസ്‌പി മറ്റ് അംഗങ്ങൾ എങ്ങനെ നിർവചിക്കുന്നു
+ഒപ്പുകൾ (ഇടപാടുകൾക്ക് മുകളിലുള്ളവ പോലുള്ളവ) ഒരു സാധുവായതുകൊണ്ടാണ് സൃഷ്ടിച്ചതെന്ന് നെറ്റ്‌വർക്ക് സ്ഥിരീകരിച്ചേക്കാം
+ഐഡന്റിറ്റി, ആ ഓർ‌ഗനൈസേഷൻ‌ നൽ‌കിയത്. ഒരു എം‌എസ്‌പിയിലെ ഐഡന്റിറ്റികളുടെ പ്രത്യേക ആക്‌സസ് അവകാശങ്ങൾ
+ഓർഗനൈസേഷനുമായി ചേരുമ്പോൾ അംഗീകരിക്കപ്പെടുന്ന നയങ്ങളാൽ നിയന്ത്രിക്കപ്പെടുന്നു
+നെറ്റ്‌വർക്ക്. ഒരു ഓർഗനൈസേഷന് ഒരു മൾട്ടി-നാഷണൽ കോർപ്പറേഷനെപ്പോലെ വലുതായിരിക്കാം അല്ലെങ്കിൽ ഒരു ചെറുതായിരിക്കാം
+വ്യക്തി. ഒരു ഓർഗനൈസേഷന്റെ ഇടപാട് എൻഡ്‌പോയിന്റ് ഒരു പിയർ_ ആണ്. ഓർഗനൈസേഷനുകളുടെ ഒരു ശേഖരം
+ഒരു കൺസോർഷ്യം_ രൂപീകരിക്കുക. ഒരു നെറ്റ്‌വർക്കിലെ എല്ലാ ഓർഗനൈസേഷനുകളും അംഗങ്ങളാണെങ്കിലും എല്ലാ ഓർഗനൈസേഷനും അല്ല
+ഒരു കൺസോർഷ്യത്തിന്റെ ഭാഗമാകും.
 
-.. _Peer:
+.. _പിയർ:
 
-Peer
+പിയർ
 ----
 
-.. figure:: ./glossary/glossary.peer.png
-   :scale: 25 %
-   :align: right
-   :figwidth: 20 %
-   :alt: A Peer
+.. ചിത്രം :: ./glossary/glossary.peer.png
+ : സ്കെയിൽ: 25%
+ : വിന്യസിക്കുക: ശരി
+ : അത്തിപ്പഴം: 20%
+ : alt: ഒരു പിയർ
 
-   A peer, 'P'
+ ഒരു പിയർ, 'പി'
 
-A network entity that maintains a ledger and runs chaincode containers in order to perform
-read/write operations to the ledger.  Peers are owned and maintained by members.
+പ്രകടനം നടത്താൻ ഒരു ലെഡ്ജർ പരിപാലിക്കുകയും ചെയിൻ‌കോഡ് പാത്രങ്ങൾ പ്രവർത്തിപ്പിക്കുകയും ചെയ്യുന്ന ഒരു നെറ്റ്‌വർക്ക് എന്റിറ്റി
+ലെഡ്ജറിലേക്ക് പ്രവർത്തനങ്ങൾ വായിക്കുക / എഴുതുക. സമപ്രായക്കാർ അംഗങ്ങളുടെ ഉടമസ്ഥതയിലുള്ളതും പരിപാലിക്കുന്നതുമാണ്.
 
-.. _Policy:
+.. _ പോളിസി:
 
-Policy
+നയം
 ------
 
-Policies are expressions composed of properties of digital identities, for
-example: ``Org1.Peer OR Org2.Peer``. They are used to restrict access to
-resources on a blockchain network. For instance, they dictate who can read from
-or write to a channel, or who can use a specific chaincode API via an ACL_.
-Policies may be defined in ``configtx.yaml`` prior to bootstrapping an ordering
-service or creating a channel, or they can be specified when instantiating
-chaincode on a channel. A default set of policies ship in the sample
-``configtx.yaml`` which will be appropriate for most networks.
+നയങ്ങൾ ഡിജിറ്റൽ ഐഡന്റിറ്റികളുടെ സവിശേഷതകൾ ഉൾക്കൊള്ളുന്ന പദപ്രയോഗങ്ങളാണ്, കാരണം
+ഉദാഹരണം: `` Org1.Peer OR Org2.Peer``. ആക്സസ് നിയന്ത്രിക്കുന്നതിന് അവ ഉപയോഗിക്കുന്നു
+ഒരു ബ്ലോക്ക്‌ചെയിൻ നെറ്റ്‌വർക്കിലെ ഉറവിടങ്ങൾ. ഉദാഹരണത്തിന്, ആർക്കാണ് വായിക്കേണ്ടതെന്ന് അവർ നിർദ്ദേശിക്കുന്നു
+അല്ലെങ്കിൽ ഒരു ചാനലിലേക്ക് എഴുതുക, അല്ലെങ്കിൽ ആർക്കാണ് ഒരു ACL_ വഴി ഒരു നിർദ്ദിഷ്ട ചെയിൻകോഡ് API ഉപയോഗിക്കാൻ കഴിയുക.
+ഒരു ഓർ‌ഡറിംഗ് ബൂട്ട് സ്ട്രാപ്പ് ചെയ്യുന്നതിന് മുമ്പ് നയങ്ങൾ‌ `` configtx.yaml`` ൽ നിർ‌വ്വചിക്കാം
+സേവനം അല്ലെങ്കിൽ ഒരു ചാനൽ സൃഷ്ടിക്കൽ, അല്ലെങ്കിൽ തൽക്ഷണം ചെയ്യുമ്പോൾ അവ വ്യക്തമാക്കാം
+ഒരു ചാനലിലെ ചെയിൻകോഡ്. നയങ്ങളുടെ സ്ഥിരസ്ഥിതി സെറ്റ് സാമ്പിളിൽ അയയ്ക്കുന്നു
+`` configtx.yaml`` ഇത് മിക്ക നെറ്റ്‌വർക്കുകൾക്കും ഉചിതമായിരിക്കും.
 
-.. _glossary-Private-Data:
+.. _ ഗ്ലോസറി-പ്രൈവറ്റ്-ഡാറ്റ:
 
-Private Data
+സ്വകാര്യ ഡാറ്റ
 ------------
 
-Confidential data that is stored in a private database on each authorized peer,
-logically separate from the channel ledger data. Access to this data is
-restricted to one or more organizations on a channel via a private data
-collection definition. Unauthorized organizations will have a hash of the
-private data on the channel ledger as evidence of the transaction data. Also,
-for further privacy, hashes of the private data go through the
-Ordering-Service_, not the private data itself, so this keeps private data
-confidential from Orderer.
+അംഗീകൃത ഓരോ പിയറിലും ഒരു സ്വകാര്യ ഡാറ്റാബേസിൽ സൂക്ഷിച്ചിരിക്കുന്ന രഹസ്യ ഡാറ്റ,
+ചാനൽ ലെഡ്ജർ ഡാറ്റയിൽ നിന്ന് യുക്തിപരമായി വേർതിരിക്കുക. ഈ ഡാറ്റയിലേക്കുള്ള ആക്സസ് ആണ്
+ഒരു സ്വകാര്യ ഡാറ്റ വഴി ചാനലിലെ ഒന്നോ അതിലധികമോ ഓർഗനൈസേഷനുകളിലേക്ക് പരിമിതപ്പെടുത്തിയിരിക്കുന്നു
+ശേഖരണ നിർവചനം. അനധികൃത ഓർ‌ഗനൈസേഷനുകൾ‌ക്ക് ഒരു ഹാഷ് ഉണ്ടായിരിക്കും
+ഇടപാട് ഡാറ്റയുടെ തെളിവായി ചാനൽ ലെഡ്ജറിലെ സ്വകാര്യ ഡാറ്റ. കൂടാതെ,
+കൂടുതൽ സ്വകാര്യതയ്ക്കായി, സ്വകാര്യ ഡാറ്റയുടെ ഹാഷുകൾ ഇതിലൂടെ കടന്നുപോകുന്നു
+ഓർഡറിംഗ്-സർവീസ്_, സ്വകാര്യ ഡാറ്റയല്ല, അതിനാൽ ഇത് സ്വകാര്യ ഡാറ്റ സൂക്ഷിക്കുന്നു
+ഓർഡററിൽ നിന്നുള്ള രഹസ്യാത്മകം.
 
-.. _glossary-Private-Data-Collection:
+.. _ ഗ്ലോസറി-പ്രൈവറ്റ്-ഡാറ്റ-ശേഖരണം:
 
-Private Data Collection (Collection)
+സ്വകാര്യ ഡാറ്റ ശേഖരണം (ശേഖരം)
 ------------------------------------
 
-Used to manage confidential data that two or more organizations on a channel
-want to keep private from other organizations on that channel. The collection
-definition describes a subset of organizations on a channel entitled to store
-a set of private data, which by extension implies that only these organizations
-can transact with the private data.
+ഒരു ചാനലിലെ രണ്ടോ അതിലധികമോ ഓർഗനൈസേഷനുകളുടെ രഹസ്യ ഡാറ്റ നിയന്ത്രിക്കാൻ ഉപയോഗിക്കുന്നു
+ആ ചാനലിലെ മറ്റ് ഓർഗനൈസേഷനുകളിൽ നിന്ന് സ്വകാര്യമായി സൂക്ഷിക്കാൻ ആഗ്രഹിക്കുന്നു. സമാഹാരം
+നിർവചനം സംഭരിക്കാൻ അവകാശമുള്ള ഒരു ചാനലിലെ ഓർഗനൈസേഷനുകളുടെ ഒരു ഉപസെറ്റ് വിവരിക്കുന്നു
+ഒരു കൂട്ടം സ്വകാര്യ ഡാറ്റ, വിപുലീകരണത്തിലൂടെ ഈ ഓർ‌ഗനൈസേഷനുകൾ‌ മാത്രം സൂചിപ്പിക്കുന്നു
+സ്വകാര്യ ഡാറ്റയുമായി ഇടപാട് നടത്താൻ കഴിയും.
 
-.. _Proposal:
+.. _പ്രൊപോസൽ:
 
-Proposal
+നിർദ്ദേശം
 --------
 
-A request for endorsement that is aimed at specific peers on a channel. Each
-proposal is either an Init or an Invoke (read/write) request.
+ഒരു ചാനലിലെ നിർദ്ദിഷ്ട സമപ്രായക്കാരെ ലക്ഷ്യം വച്ചുള്ള അംഗീകാരത്തിനുള്ള അഭ്യർത്ഥന. ഓരോന്നും
+നിർദ്ദേശം ഒരു പ്രാരംഭ അല്ലെങ്കിൽ ഒരു ഇൻവോക്ക് (വായിക്കുക / എഴുതുക) അഭ്യർത്ഥനയാണ്.
 
 
-.. _Query:
+.. _ ചോദ്യം:
 
-Query
+ചോദ്യം
 -----
 
-A query is a chaincode invocation which reads the ledger current state but does
-not write to the ledger. The chaincode function may query certain keys on the ledger,
-or may query for a set of keys on the ledger. Since queries do not change ledger state,
-the client application will typically not submit these read-only transactions for ordering,
-validation, and commit. Although not typical, the client application can choose to
-submit the read-only transaction for ordering, validation, and commit, for example if the
-client wants auditable proof on the ledger chain that it had knowledge of specific ledger
-state at a certain point in time.
+ലെഡ്ജറിന്റെ നിലവിലെ അവസ്ഥ വായിക്കുന്ന ഒരു ചെയിൻ‌കോഡ് ഇൻ‌വോക്കേഷനാണ് അന്വേഷണം
+ലെഡ്ജറിന് എഴുതരുത്. ചെയിൻ‌കോഡ് ഫംഗ്ഷൻ ലെഡ്ജറിലെ ചില കീകളെ അന്വേഷിച്ചേക്കാം,
+അല്ലെങ്കിൽ ലെഡ്ജറിലെ ഒരു കൂട്ടം കീകൾക്കായി അന്വേഷിക്കാം. ചോദ്യങ്ങൾ ലെഡ്ജർ നിലയെ മാറ്റാത്തതിനാൽ,
+ഓർഡർ ചെയ്യുന്നതിനായി ക്ലയന്റ് ആപ്ലിക്കേഷൻ സാധാരണയായി ഈ വായന-മാത്രം ഇടപാടുകൾ സമർപ്പിക്കില്ല,
+മൂല്യനിർണ്ണയം, പ്രതിജ്ഞാബദ്ധത. സാധാരണ അല്ലെങ്കിലും, ക്ലയന്റ് അപ്ലിക്കേഷന് ഇത് തിരഞ്ഞെടുക്കാൻ കഴിയും
+ഓർ‌ഡറിംഗ്, മൂല്യനിർണ്ണയം, പ്രതിജ്ഞാബദ്ധത എന്നിവയ്ക്കായി വായന-മാത്രം ഇടപാട് സമർപ്പിക്കുക, ഉദാഹരണത്തിന്
+നിർദ്ദിഷ്ട ലെഡ്ജറിനെക്കുറിച്ച് അറിവുണ്ടെന്നതിന് ലെഡ്ജർ ശൃംഖലയിൽ ഓഡിറ്റ് ചെയ്യാവുന്ന തെളിവ് ക്ലയന്റ് ആഗ്രഹിക്കുന്നു
+ഒരു നിശ്ചിത ഘട്ടത്തിൽ പ്രസ്താവിക്കുക.
 
-.. _Quorum:
+.. _ കോറം:
 
-Quorum
+കോറം
 ------
 
-This describes the minimum number of members of the cluster that need to
-affirm a proposal so that transactions can be ordered. For every consenter set,
-this is a **majority** of nodes. In a cluster with five nodes, three must be
-available for there to be a quorum. If a quorum of nodes is unavailable for any
-reason, the cluster becomes unavailable for both read and write operations and
-no new logs can be committed.
+ക്ലസ്റ്ററിലെ ഏറ്റവും കുറഞ്ഞ അംഗങ്ങളുടെ എണ്ണം ഇത് വിവരിക്കുന്നു
+ഇടപാടുകൾ ഓർഡർ ചെയ്യുന്നതിനായി ഒരു നിർദ്ദേശം സ്ഥിരീകരിക്കുക. ഓരോ സമ്മത സെറ്റിനും,
+ഇത് ** ഭൂരിപക്ഷം ** നോഡുകളാണ്. അഞ്ച് നോഡുകളുള്ള ഒരു ക്ലസ്റ്ററിൽ, മൂന്ന് ആയിരിക്കണം
+ഒരു കോറം ലഭിക്കാൻ ലഭ്യമാണ്. നോഡുകളുടെ ഒരു കോറം ആർക്കും ലഭ്യമല്ലെങ്കിൽ
+കാരണം, വായന, എഴുത്ത് പ്രവർത്തനങ്ങൾക്കായി ക്ലസ്റ്റർ ലഭ്യമല്ല
+പുതിയ ലോഗുകളൊന്നും ചെയ്യാൻ കഴിയില്ല.
 
-.. _Raft:
+.. _ റാഫ്റ്റ്:
 
-Raft
+റാഫ്റ്റ്
 ----
 
-New for v1.4.1, Raft is a crash fault tolerant (CFT) ordering service
-implementation based on the `etcd library <https://coreos.com/etcd/>`_
-of the `Raft protocol` <https://raft.github.io/raft.pdf>`_. Raft follows a
-"leader and follower" model, where a leader node is elected (per channel) and
-its decisions are replicated by the followers. Raft ordering services should
-be easier to set up and manage than Kafka-based ordering services, and their
-design allows organizations to contribute nodes to a distributed ordering
-service.
+V1.4.1- ന് പുതിയത്, റാഫ്റ്റ് ഒരു ക്രാഷ് ഫോൾട്ട് ടോളറന്റ് (CFT) ഓർഡറിംഗ് സേവനമാണ്
+`etcd ലൈബ്രറി <https://coreos.com/etcd/>` _ അടിസ്ഥാനമാക്കിയുള്ള നടപ്പാക്കൽ
+`റാഫ്റ്റ് പ്രോട്ടോക്കോൾ` <https://raft.github.io/raft.pdf>` _. റാഫ്റ്റ് പിന്തുടരുന്നു a
+"ലീഡർ, ഫോളോവർ" മോഡൽ, അവിടെ ഒരു ലീഡർ നോഡ് തിരഞ്ഞെടുക്കപ്പെടുന്നു (ഓരോ ചാനലിനും) കൂടാതെ
+അതിന്റെ തീരുമാനങ്ങൾ അനുയായികൾ ആവർത്തിക്കുന്നു. റാഫ്റ്റ് ഓർ‌ഡറിംഗ് സേവനങ്ങൾ‌ ചെയ്യണം
+കാഫ്ക അടിസ്ഥാനമാക്കിയുള്ള ഓർ‌ഡറിംഗ് സേവനങ്ങളേക്കാളും അവയുടെ സജ്ജീകരണത്തേക്കാളും സജ്ജീകരിക്കാനും മാനേജുചെയ്യാനും എളുപ്പമാണ്
+വിതരണം ചെയ്ത ഓർ‌ഡറിംഗിലേക്ക് നോഡുകൾ‌ സംഭാവന ചെയ്യാൻ‌ ഡിസൈൻ‌ ഓർ‌ഗനൈസേഷനുകളെ അനുവദിക്കുന്നു
+സേവനം.
 
 .. _SDK:
 
-Software Development Kit (SDK)
+സോഫ്റ്റ്വെയർ ഡെവലപ്മെന്റ് കിറ്റ് (എസ്ഡികെ)
 ------------------------------
 
-The Hyperledger Fabric client SDK provides a structured environment of libraries
-for developers to write and test chaincode applications. The SDK is fully
-configurable and extensible through a standard interface. Components, including
-cryptographic algorithms for signatures, logging frameworks and state stores,
-are easily swapped in and out of the SDK. The SDK provides APIs for transaction
-processing, membership services, node traversal and event handling.
+ഹൈപ്പർലെഡ്ജർ ഫാബ്രിക് ക്ലയന്റ് എസ്ഡികെ ലൈബ്രറികളുടെ ഘടനാപരമായ അന്തരീക്ഷം നൽകുന്നു
+ഡവലപ്പർമാർക്ക് ചെയിൻ‌കോഡ് അപ്ലിക്കേഷനുകൾ‌ എഴുതാനും പരിശോധിക്കാനും. SDK പൂർണ്ണമായും
+ഒരു സാധാരണ ഇന്റർഫേസിലൂടെ ക്രമീകരിക്കാവുന്നതും വിപുലീകരിക്കാവുന്നതുമാണ്. ഉൾപ്പെടെയുള്ള ഘടകങ്ങൾ
+ഒപ്പുകൾ, ലോഗിംഗ് ഫ്രെയിംവർക്കുകൾ, സ്റ്റേറ്റ് സ്റ്റോറുകൾ എന്നിവയ്ക്കുള്ള ക്രിപ്റ്റോഗ്രാഫിക് അൽഗോരിതംസ്,
+SDK- യിലും പുറത്തും എളുപ്പത്തിൽ കൈമാറ്റം ചെയ്യപ്പെടും. ഇടപാടിനായി SDK API- കൾ നൽകുന്നു
+പ്രോസസ്സിംഗ്, അംഗത്വ സേവനങ്ങൾ, നോഡ് ട്രാവെർസൽ, ഇവന്റ് കൈകാര്യം ചെയ്യൽ.
 
-Currently, the two officially supported SDKs are for Node.js and Java, while two
-more -- Python and Go -- are not yet official but can still be downloaded
-and tested.
+നിലവിൽ, official ദ്യോഗികമായി പിന്തുണയ്ക്കുന്ന രണ്ട് SDK- കൾ Node.js, Java എന്നിവയ്ക്കാണ്, രണ്ട്
+കൂടുതൽ - പൈത്തണും ഗോയും ഇതുവരെ official ദ്യോഗികമല്ലെങ്കിലും അവ ഡ .ൺലോഡ് ചെയ്യാൻ കഴിയും
+പരീക്ഷിച്ചു.
 
-.. _Smart-Contract:
+.. _സ്മാർട്ട്-കരാർ:
 
-Smart Contract
+സ്മാർട്ട് കരാർ
 --------------
 
-A smart contract is code -- invoked by a client application external to the
-blockchain network -- that manages access and modifications to a set of
-key-value pairs in the :ref:`World-State` via :ref:`Transaction`. In Hyperledger Fabric,
-smart contracts are packaged as chaincode. Chaincode is installed on peers
-and then defined and used on one or more channels.
+ഒരു സ്മാർട്ട് കരാർ എന്നത് കോഡാണ് - എന്നതിന് പുറമേ ഒരു ക്ലയന്റ് ആപ്ലിക്കേഷൻ അഭ്യർത്ഥിക്കുന്നു
+ബ്ലോക്ക്‌ചെയിൻ നെറ്റ്‌വർക്ക് - ഒരു കൂട്ടം ആക്‌സസ്സുകളും പരിഷ്‌ക്കരണങ്ങളും നിയന്ത്രിക്കുന്ന
+ഇനിപ്പറയുന്നവയിലെ കീ-മൂല്യ ജോഡികൾ: ref: `വേൾഡ്-സ്റ്റേറ്റ്` വഴി: ref:` ഇടപാട്`. ഹൈപ്പർലെഡ്ജർ ഫാബ്രിക്കിൽ,
+സ്മാർട്ട് കരാറുകൾ ചെയിൻകോഡായി പാക്കേജുചെയ്യുന്നു. സമപ്രായക്കാരിൽ ചെയിൻ‌കോഡ് ഇൻ‌സ്റ്റാൾ‌ ചെയ്‌തു
+തുടർന്ന് ഒന്നോ അതിലധികമോ ചാനലുകളിൽ നിർവചിക്കുകയും ഉപയോഗിക്കുകയും ചെയ്യുന്നു.
 
-.. _State-DB:
+.. _സ്റ്റേറ്റ്-ഡിബി:
 
-State Database
+സംസ്ഥാന ഡാറ്റാബേസ്
 --------------
 
-World state data is stored in a state database for efficient reads and queries
-from chaincode. Supported databases include levelDB and couchDB.
+കാര്യക്ഷമമായ വായനകൾക്കും ചോദ്യങ്ങൾക്കുമായി ലോക സ്റ്റേറ്റ് ഡാറ്റ ഒരു സ്റ്റേറ്റ് ഡാറ്റാബേസിൽ സംഭരിച്ചിരിക്കുന്നു
+ചെയിൻകോഡിൽ നിന്ന്. ലെവൽ ഡിബി, ക ch ച്ച്ഡിബി എന്നിവ പിന്തുണയ്ക്കുന്ന ഡാറ്റാബേസുകളിൽ ഉൾപ്പെടുന്നു.
 
-.. _System-Chain:
+.. _സിസ്റ്റം-ചെയിൻ:
 
-System Chain
+സിസ്റ്റം ചെയിൻ
 ------------
 
-Contains a configuration block defining the network at a system level. The
-system chain lives within the ordering service, and similar to a channel, has
-an initial configuration containing information such as: MSP information, policies,
-and configuration details.  Any change to the overall network (e.g. a new org
-joining or a new ordering node being added) will result in a new configuration block
-being added to the system chain.
+സിസ്റ്റം തലത്തിൽ നെറ്റ്‌വർക്കിനെ നിർവചിക്കുന്ന ഒരു കോൺഫിഗറേഷൻ ബ്ലോക്ക് അടങ്ങിയിരിക്കുന്നു. ദി
+സിസ്റ്റം ചെയിൻ ഓർഡറിംഗ് സേവനത്തിനുള്ളിൽ ജീവിക്കുന്നു, ഒരു ചാനലിന് സമാനമാണ്
+ഇനിപ്പറയുന്ന വിവരങ്ങൾ അടങ്ങുന്ന ഒരു പ്രാരംഭ കോൺഫിഗറേഷൻ: എം‌എസ്‌പി വിവരങ്ങൾ, നയങ്ങൾ,
+കോൺഫിഗറേഷൻ വിശദാംശങ്ങളും. മൊത്തത്തിലുള്ള നെറ്റ്‌വർക്കിലെ ഏത് മാറ്റവും (ഉദാ. ഒരു പുതിയ org
+ചേരുക അല്ലെങ്കിൽ ഒരു പുതിയ ഓർ‌ഡറിംഗ് നോഡ് ചേർ‌ക്കുന്നു) ഒരു പുതിയ കോൺ‌ഫിഗറേഷൻ ബ്ലോക്കിന് കാരണമാകും
+സിസ്റ്റം ശൃംഖലയിലേക്ക് ചേർക്കുന്നു.
 
-The system chain can be thought of as the common binding for a channel or group
-of channels.  For instance, a collection of financial institutions may form a
-consortium (represented through the system chain), and then proceed to create
-channels relative to their aligned and varying business agendas.
+സിസ്റ്റം ചെയിനെ ഒരു ചാനലിനോ ഗ്രൂപ്പിനോ ഉള്ള പൊതുവായ ബന്ധമായി കണക്കാക്കാം
+ചാനലുകളുടെ. ഉദാഹരണത്തിന്, ധനകാര്യ സ്ഥാപനങ്ങളുടെ ഒരു ശേഖരം a
+കൺസോർഷ്യം (സിസ്റ്റം ചെയിൻ വഴി പ്രതിനിധീകരിക്കുന്നു), തുടർന്ന് സൃഷ്ടിക്കാൻ തുടരുക
+വിന്യസിച്ചതും വ്യത്യസ്തവുമായ ബിസിനസ്സ് അജണ്ടകളുമായി ബന്ധപ്പെട്ട ചാനലുകൾ.
 
-.. _Transaction:
+.. _ഇടപാട്:
 
-Transaction
+ഇടപാട്
 -----------
 
-.. figure:: ./glossary/glossary.transaction.png
-   :scale: 30 %
-   :align: right
-   :figwidth: 20 %
-   :alt: A Transaction
+.. ചിത്രം :: ./glossary/glossary.transaction.png
+ : സ്കെയിൽ: 30%
+ : വിന്യസിക്കുക: ശരി
+ : അത്തിപ്പഴം: 20%
+ : alt: ഒരു ഇടപാട്
 
-   A transaction, 'T'
+ ഒരു ഇടപാട്, 'ടി'
 
-Transactions are created when a chaincode is invoked from a client application
-to read or write data from the ledger. Fabric application clients submit transaction proposals to
-endorsing peers for execution and endorsement, gather the signed (endorsed) responses from those
-endorsing peers, and then package the results and endorsements into a transaction that is
-submitted to the ordering service. The ordering service orders and places transactions
-in a block that is broadcast to the peers which validate and commit the transactions to the ledger
-and update world state.
+ഒരു ക്ലയന്റ് അപ്ലിക്കേഷനിൽ നിന്ന് ഒരു ചെയിൻകോഡ് അഭ്യർത്ഥിക്കുമ്പോൾ ഇടപാടുകൾ സൃഷ്ടിക്കപ്പെടുന്നു
+ലെഡ്ജറിൽ നിന്ന് ഡാറ്റ വായിക്കാനോ എഴുതാനോ. ഫാബ്രിക് ആപ്ലിക്കേഷൻ ക്ലയന്റുകൾ ഇടപാട് നിർദ്ദേശങ്ങൾ സമർപ്പിക്കുന്നു
+നിർവ്വഹണത്തിനും അംഗീകാരത്തിനുമായി സമപ്രായക്കാരെ അംഗീകരിക്കുക, അവരിൽ നിന്ന് ഒപ്പിട്ട (അംഗീകരിച്ച) പ്രതികരണങ്ങൾ ശേഖരിക്കുക
+സമപ്രായക്കാരെ അംഗീകരിക്കുക, തുടർന്ന് ഫലങ്ങളും അംഗീകാരങ്ങളും ഒരു ഇടപാടിലേക്ക് പാക്കേജ് ചെയ്യുക
+ഓർ‌ഡറിംഗ് സേവനത്തിന് സമർപ്പിച്ചു. ഓർ‌ഡറിംഗ് സേവന ഓർ‌ഡറുകളും ഇടപാടുകളും നടത്തുന്നു
+ലെഡ്ജറിലേക്ക് ഇടപാടുകൾ സാധൂകരിക്കുകയും സമർപ്പിക്കുകയും ചെയ്യുന്ന സമപ്രായക്കാർക്ക് പ്രക്ഷേപണം ചെയ്യുന്ന ഒരു ബ്ലോക്കിൽ
+ലോക അവസ്ഥ അപ്‌ഡേറ്റുചെയ്യുക.
 
-.. _World-State:
+.. _ ലോക-സംസ്ഥാനം:
 
-World State
+ലോക സംസ്ഥാനം
 -----------
 
-.. figure:: ./glossary/glossary.worldstate.png
-   :scale: 40 %
-   :align: right
-   :figwidth: 25 %
-   :alt: Current State
+.. ചിത്രം :: ./glossary/glossary.worldstate.png
+ : സ്കെയിൽ: 40%
+ : വിന്യസിക്കുക: ശരി
+ : അത്തിപ്പഴം: 25%
+ : alt: നിലവിലെ അവസ്ഥ
 
-   The World State, 'W'
+ ലോക സംസ്ഥാനം, 'ഡബ്ല്യു'
 
-Also known as the “current state”, the world state is a component of the
-HyperLedger Fabric :ref:`Ledger`. The world state represents the latest values
-for all keys included in the chain transaction log. Chaincode executes
-transaction proposals against world state data because the world state provides
-direct access to the latest value of these keys rather than having to calculate
-them by traversing the entire transaction log. The world state will change
-every time the value of a key changes (for example, when the ownership of a
-car -- the "key" -- is transferred from one owner to another -- the
-"value") or when a new key is added (a car is created). As a result, the world
-state is critical to a transaction flow, since the current state of a key-value
-pair must be known before it can be changed. Peers commit the latest values to
-the ledger world state for each valid transaction included in a processed block.
+“നിലവിലെ അവസ്ഥ” എന്നും അറിയപ്പെടുന്ന ലോക രാഷ്ട്രം അതിന്റെ ഒരു ഘടകമാണ്
+ഹൈപ്പർ ലെഡ്ജർ ഫാബ്രിക്: ref: `ലെഡ്ജർ`. ലോക രാഷ്ട്രം ഏറ്റവും പുതിയ മൂല്യങ്ങളെ പ്രതിനിധീകരിക്കുന്നു
+ചെയിൻ ഇടപാട് ലോഗിൽ ഉൾപ്പെടുത്തിയിരിക്കുന്ന എല്ലാ കീകൾക്കും. ചെയിൻകോഡ് നിർവ്വഹിക്കുന്നു
+ലോക സ്റ്റേറ്റ് നൽകുന്നതിനാലാണ് ലോക സ്റ്റേറ്റ് ഡാറ്റയ്ക്കെതിരായ ഇടപാട് നിർദ്ദേശങ്ങൾ
+കണക്കാക്കാതെ ഈ കീകളുടെ ഏറ്റവും പുതിയ മൂല്യത്തിലേക്ക് നേരിട്ട് പ്രവേശിക്കുക
+മുഴുവൻ ഇടപാട് ലോഗിലൂടെയും സഞ്ചരിച്ചുകൊണ്ട് അവ. ലോക രാഷ്ട്രം മാറും
+ഓരോ തവണയും ഒരു കീയുടെ മൂല്യം മാറുമ്പോൾ (ഉദാഹരണത്തിന്, a ന്റെ ഉടമസ്ഥാവകാശം
+കാർ - "കീ" - ഒരു ഉടമയിൽ നിന്ന് മറ്റൊന്നിലേക്ക് മാറ്റുന്നു - ദി
+"മൂല്യം") അല്ലെങ്കിൽ ഒരു പുതിയ കീ ചേർക്കുമ്പോൾ (ഒരു കാർ സൃഷ്ടിക്കപ്പെടുന്നു). തൽഫലമായി, ലോകം
+ഒരു കീ മൂല്യത്തിന്റെ നിലവിലെ അവസ്ഥ കാരണം ഒരു ഇടപാട് പ്രവാഹത്തിന് സംസ്ഥാനം നിർണ്ണായകമാണ്
+ജോഡി മാറ്റുന്നതിനുമുമ്പ് അറിയണം. സമപ്രായക്കാർ ഏറ്റവും പുതിയ മൂല്യങ്ങൾ സമർപ്പിക്കുന്നു
+പ്രോസസ്സ് ചെയ്ത ഒരു ബ്ലോക്കിൽ ഉൾപ്പെടുത്തിയിരിക്കുന്ന സാധുവായ ഓരോ ഇടപാടിനുമുള്ള ലെഡ്ജർ ലോക അവസ്ഥ.
 
 
-.. Licensed under Creative Commons Attribution 4.0 International License
-   https://creativecommons.org/licenses/by/4.0/
+.. ക്രിയേറ്റീവ് കോമൺസ് ആട്രിബ്യൂഷൻ 4.0 അന്താരാഷ്ട്ര ലൈസൻസിന് കീഴിൽ ലൈസൻസ് നേടി
+ https://creativecommons.org/licenses/by/4.0/
