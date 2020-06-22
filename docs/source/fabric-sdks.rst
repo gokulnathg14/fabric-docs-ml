@@ -8,5 +8,5 @@
  * `ഹൈപ്പർ‌ലെഡ്ജർ ഫാബ്രിക് നോഡ് SDK ഡോക്യുമെന്റേഷൻ <https://hyperledger.github.io/fabric-sdk-node/>` __.
  * `ഹൈപ്പർലെഡ്ജർ ഫാബ്രിക് ജാവ SDK ഡോക്യുമെന്റേഷൻ <https://hyperledger.github.io/fabric-gateway-java/>` __.
 
-.. ക്രിയേറ്റീവ് കോമൺസ് ആട്രിബ്യൂഷൻ 4.0 അന്താരാഷ്ട്ര ലൈസൻസിന് കീഴിൽ ലൈസൻസ് നേടി
- https://creativecommons.org/licenses/by/4.0/
+.. Licensed under Creative Commons Attribution 4.0 International License
+   https://creativecommons.org/licenses/by/4.0/
